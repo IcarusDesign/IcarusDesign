@@ -1,205 +1,233 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Icarus Design</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <title>Icarus Design - Hermenilton Miranda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f5f5f5;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
             color: #333;
-            cursor: pointer;
         }
-        .container {
-            padding: 20px;
-        }
-        .profile {
+
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-        .profile img {
-            border-radius: 10px;
-            width: 150px;
-            height: 150px;
-        }
-        .work-section, .video-section, .photo-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        .work-section div, .photo-section div {
-            width: 30%;
             background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav img {
+            width: 120px;
+        }
+
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px;
+            background-color: #eaeaea;
+        }
+
+        .header-content h1 {
+            font-weight: bold;
+            font-size: 2.5rem;
+        }
+
+        .header-content p {
+            font-weight: normal;
+            font-size: 1.5rem;
+        }
+
+        .header-content .photo-box {
+            width: 200px;
+            height: 200px;
+            background-color: #ccc;
             border-radius: 10px;
-            margin: 10px 0;
-            padding: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .work-section div img, .photo-section div img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .video-section div {
-            width: 48%;
-            margin: 10px 0;
-        }
-        .video-section div video {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .cta {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .cta a {
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
             background-color: #007bff;
             color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
             text-decoration: none;
-        }
-        .section-title {
-            font-weight: bold;
-            margin-top: 30px;
-            text-align: center;
-        }
-        .hidden {
-            display: none;
-        }
-        .about, .solutions, .contact {
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
+            border-radius: 5px;
             margin-top: 20px;
         }
-        .rounded {
+
+        .portfolio-section {
+            padding: 50px;
+            text-align: center;
+        }
+
+        .portfolio-section h2 {
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .portfolio-images {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .portfolio-images div {
+            width: 250px;
+            height: 250px;
+            background-color: #ccc;
+            border-radius: 15px;
+        }
+
+        .video-section {
+            padding: 50px;
+        }
+
+        .video-section h2 {
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .video-grid {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .video-grid video {
+            width: 45%;
             border-radius: 10px;
         }
-    </style>
-    <script>
-        function toggleSection(section) {
-            document.getElementById('aboutSection').classList.add('hidden');
-            document.getElementById('solutionsSection').classList.add('hidden');
-            document.getElementById('contactSection').classList.add('hidden');
-            document.getElementById(section).classList.remove('hidden');
+
+        .photo-section {
+            padding: 50px;
+            text-align: center;
         }
-    </script>
+
+        .photo-grid {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .photo-grid div {
+            width: 300px;
+            height: 200px;
+            background-color: #ccc;
+            border-radius: 10px;
+        }
+
+        #content {
+            padding: 50px;
+            text-align: center;
+        }
+
+        .section-content {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
-<header>
-    <img src="path/to/your/logo.png" alt="Logo" style="width: 100px;">
     <nav>
-        <a onclick="toggleSection('homeSection')">HOME</a>
-        <a onclick="toggleSection('aboutSection')">ABOUT</a>
-        <a onclick="toggleSection('solutionsSection')">SOLUTIONS</a>
-        <a onclick="toggleSection('contactSection')">CONTACT US</a>
+        <div>
+            <img src="logo.png" alt="Logo">
+        </div>
+        <div>
+            <a href="#" onclick="showSection('about')">ABOUT</a>
+            <a href="#" onclick="showSection('solutions')">SOLUTIONS</a>
+            <a href="#" onclick="showSection('contact')">CONTACT US</a>
+        </div>
     </nav>
-</header>
 
-<div class="container">
-    <div class="profile">
+    <div class="header-content">
         <div>
-            <h1 style="font-weight: bold;">Hermenilton Miranda</h1>
-            <p style="font-weight: normal;">Graphic Designer</p>
+            <h1>Hermenilton Miranda</h1>
+            <p>Graphic Designer</p>
+            <a href="https://www.behance.net/herminimiranda" class="btn">Conheça meu trabalho</a>
         </div>
-        <img src="path/to/your/photo.jpg" alt="Hermenilton Miranda">
-    </div>
-
-    <h2 class="section-title">Um pouco do meu trabalho</h2>
-    <div class="cta">
-        <a href="https://www.behance.net/herminimiranda">Conheça meu trabalho no Behance</a>
-    </div>
-    <div class="work-section">
-        <div>
-            <img src="path/to/work1.jpg" alt="Trabalho 1">
-        </div>
-        <div>
-            <img src="path/to/work2.jpg" alt="Trabalho 2">
-        </div>
-        <div>
-            <img src="path/to/work3.jpg" alt="Trabalho 3">
+        <div class="photo-box">
+            <!-- Adicionar imagem do perfil aqui -->
         </div>
     </div>
 
-    <h2 class="section-title">Fotografias e Vídeos</h2>
+    <div class="portfolio-section">
+        <h2>Um pouco do meu trabalho</h2>
+        <div class="portfolio-images">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
     <div class="video-section">
-        <div>
-            <video controls>
-                <source src="path/to/video1.mp4" type="video/mp4">
-                Seu navegador não suporta o vídeo.
-            </video>
-        </div>
-        <div>
-            <video controls>
-                <source src="path/to/video2.mp4" type="video/mp4">
-                Seu navegador não suporta o vídeo.
-            </video>
+        <h2>Fotografias e Vídeos</h2>
+        <div class="video-grid">
+            <video controls></video>
+            <video controls></video>
         </div>
     </div>
 
-    <h2 class="section-title">Fotografias Aéreas</h2>
     <div class="photo-section">
-        <div>
-            <img src="path/to/aerial1.jpg" alt="Fotografia Aérea 1">
+        <h2>Fotografias Aéreas</h2>
+        <div class="photo-grid">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
-        <div>
-            <img src="path/to/aerial2.jpg" alt="Fotografia Aérea 2">
-        </div>
-        <div>
-            <img src="path/to/aerial3.jpg" alt="Fotografia Aérea 3">
-        </div>
-        <div>
-            <img src="path/to/aerial4.jpg" alt="Fotografia Aérea 4">
-        </div>
-        <div>
-            <img src="path/to/aerial5.jpg" alt="Fotografia Aérea 5">
-        </div>
-        <div>
-            <img src="path/to/aerial6.jpg" alt="Fotografia Aérea 6">
-        </div>
-    </div>
-    <div class="cta">
-        <a href="link-to-more-aerial-photos">Ver mais fotografias aéreas</a>
+        <a href="#" class="btn">Ver mais</a>
     </div>
 
-    <div id="aboutSection" class="about hidden">
-        <h2>Sobre Mim</h2>
-        <p>Olá! Sou um designer gráfico com uma paixão por criar visuais impactantes e funcionais. Tenho uma vasta experiência na área...</p>
+    <div id="content">
+        <div id="aboutSection" class="section-content">
+            <h2>Sobre Mim</h2>
+            <p>Sou um designer gráfico com uma paixão por criar visuais impactantes e funcionais. [...]</p>
+        </div>
+
+        <div id="solutionsSection" class="section-content" style="display:none;">
+            <h2>Soluções Criativas para o Seu Negócio</h2>
+            <h3>Design Gráfico</h3>
+            <p>Transformo ideias em imagens que contam histórias. [...]</p>
+            <h3>Imagens e Vídeos Aéreos</h3>
+            <p>Caputuro ângulos únicos e criativos [...]</p>
+            <h3>Edição e colorização de Vídeos</h3>
+            <p>Ofereço serviços completos de edição de vídeo [...]</p>
+            <h3>Soluções Personalizadas</h3>
+            <p>Cada projeto é tratado com atenção e dedicação. [...]</p>
+        </div>
+
+        <div id="contactSection" class="section-content" style="display:none;">
+            <h2>Contatos</h2>
+            <div style="text-align:center; border: 1px solid #ccc; padding: 20px;">
+                <p><strong>Tel:</strong> 9893666</p>
+                <p><strong>Email:</strong> herminiltonmiranda2001@gmail.com</p>
+            </div>
+        </div>
     </div>
 
-    <div id="solutionsSection" class="solutions hidden">
-        <h2>Soluções Criativas para o Seu Negócio</h2>
-        <p><strong>Design Gráfico:</strong> Transformo ideias em imagens que contam histórias...</p>
-        <p><strong>Imagens e Vídeos Aéreos:</strong> Capto ângulos únicos e criativos...</p>
-        <p><strong>Edição e Colorização de Vídeos:</strong> Ofereço serviços completos de edição de vídeo...</p>
-        <p><strong>Soluções Personalizadas:</strong> Ofereço soluções personalizadas que se alinham perfeitamente às suas necessidades...</p>
-    </div>
-
-    <div id="contactSection" class="contact hidden">
-        <h2>Contato</h2>
-        <p>Tel: 9893666</p>
-        <p>Email: herminiltonmiranda2001@gmail.com</p>
-    </div>
-</div>
+    <script>
+        function showSection(sectionId) {
+            // Oculta todas as seções
+            document.getElementById('aboutSection').style.display = 'none';
+            document.getElementById('solutionsSection').style.display = 'none';
+            document.getElementById('contactSection').style.display = 'none';
+            
+            // Mostra apenas a seção clicada
+            document.getElementById(sectionId + 'Section').style.display = 'block';
+        }
+    </script>
 
 </body>
 </html>

@@ -24,6 +24,7 @@
             margin: 0 15px;
             text-decoration: none;
             color: #333;
+            cursor: pointer;
         }
         .container {
             padding: 20px;
@@ -81,17 +82,34 @@
             margin-top: 30px;
             text-align: center;
         }
+        .hidden {
+            display: none;
+        }
+        .about, .solutions, .contact {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
     </style>
+    <script>
+        function toggleSection(section) {
+            document.getElementById('aboutSection').classList.add('hidden');
+            document.getElementById('solutionsSection').classList.add('hidden');
+            document.getElementById('contactSection').classList.add('hidden');
+            document.getElementById(section).classList.remove('hidden');
+        }
+    </script>
 </head>
 <body>
 
 <header>
     <img src="path/to/your/logo.png" alt="Logo" style="width: 100px;">
     <nav>
-        <a href="#home">HOME</a>
-        <a href="#about">ABOUT</a>
-        <a href="#solutions">SOLUTIONS</a>
-        <a href="#contact">CONTACT US</a>
+        <a onclick="toggleSection('homeSection')">HOME</a>
+        <a onclick="toggleSection('aboutSection')">ABOUT</a>
+        <a onclick="toggleSection('solutionsSection')">SOLUTIONS</a>
+        <a onclick="toggleSection('contactSection')">CONTACT US</a>
     </nav>
 </header>
 
@@ -155,21 +173,24 @@
         <a href="link-to-more-aerial-photos">Ver mais fotografias aéreas</a>
     </div>
 
-    <section id="about">
+    <div id="aboutSection" class="about hidden">
         <h2>Sobre Mim</h2>
         <p>Olá! Sou um designer gráfico com uma paixão por criar visuais impactantes e funcionais...</p>
-    </section>
+    </div>
 
-    <section id="solutions">
+    <div id="solutionsSection" class="solutions hidden">
         <h2>Soluções Criativas para o Seu Negócio</h2>
-        <p>Design Gráfico: Transformo ideias em imagens que contam histórias...</p>
-    </section>
+        <p><strong>Design Gráfico:</strong> Transformo ideias em imagens que contam histórias...</p>
+        <p><strong>Imagens e Vídeos Aéreos:</strong> Capto ângulos únicos e criativos...</p>
+        <p><strong>Edição e Colorização de Vídeos:</strong> Ofereço serviços completos de edição de vídeo...</p>
+        <p><strong>Soluções Personalizadas:</strong> Ofereço soluções personalizadas que se alinham perfeitamente às suas necessidades...</p>
+    </div>
 
-    <section id="contact">
+    <div id="contactSection" class="contact hidden">
         <h2>Contato</h2>
         <p>Tel: 9893666</p>
         <p>Email: herminiltonmiranda2001@gmail.com</p>
-    </section>
+    </div>
 </div>
 
 </body>

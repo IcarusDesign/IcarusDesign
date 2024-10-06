@@ -40,6 +40,7 @@
             align-items: center;
             padding: 50px;
             background-color: #eaeaea;
+            flex-wrap: wrap;
         }
 
         .header-content h1 {
@@ -82,6 +83,7 @@
         .portfolio-images {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
         }
 
         .portfolio-images div {
@@ -89,6 +91,7 @@
             height: 250px;
             background-color: #ccc;
             border-radius: 15px;
+            margin: 10px;
         }
 
         .video-section {
@@ -104,11 +107,14 @@
         .video-grid {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
         }
 
         .video-grid video {
-            width: 45%;
+            width: 100%;
+            max-width: 400px;
             border-radius: 10px;
+            margin: 10px;
         }
 
         .photo-section {
@@ -119,6 +125,7 @@
         .photo-grid {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
         }
 
         .photo-grid div {
@@ -126,6 +133,7 @@
             height: 200px;
             background-color: #ccc;
             border-radius: 10px;
+            margin: 10px;
         }
 
         #content {
@@ -143,6 +151,32 @@
             display: block;
         }
 
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav a {
+                margin: 10px 0;
+            }
+
+            .portfolio-images, .video-grid, .photo-grid {
+                flex-direction: column;
+            }
+
+            .portfolio-images div, .video-grid video, .photo-grid div {
+                width: 100%;
+                max-width: 400px;
+                margin-bottom: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -235,15 +269,4 @@
     </div>
 
     <script>
-        function showSection(sectionId) {
-            // Ocultar todas as seções
-            document.querySelectorAll('.section-content').forEach(section => {
-                section.classList.remove('active-section');
-            });
-            // Mostrar a seção clicada
-            document.getElementById(sectionId).classList.add('active-section');
-        }
-    </script>
-
-</body>
-</html>
+        function showSection(sectionAqui está uma solução para ambos os problemas:

@@ -31,13 +31,13 @@
         }
         .profile {
             display: flex;
+            justify-content: space-between;
             align-items: center;
         }
         .profile img {
-            border-radius: 50%;
+            border-radius: 10px;
             width: 150px;
             height: 150px;
-            margin-left: 20px;
         }
         .work-section, .video-section, .photo-section {
             display: flex;
@@ -52,15 +52,14 @@
             margin: 10px 0;
             padding: 10px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            text-align: center;
+        }
+        .work-section div img, .photo-section div img {
+            width: 100%;
+            border-radius: 10px;
         }
         .video-section div {
             width: 48%;
             margin: 10px 0;
-        }
-        .photo-section div img {
-            width: 100%;
-            border-radius: 10px;
         }
         .video-section div video {
             width: 100%;
@@ -90,6 +89,9 @@
             background-color: #fff;
             border-radius: 10px;
             margin-top: 20px;
+        }
+        .rounded {
+            border-radius: 10px;
         }
     </style>
     <script>
@@ -123,19 +125,19 @@
     </div>
 
     <h2 class="section-title">Um pouco do meu trabalho</h2>
-    <div class="work-section">
-        <div>
-            <img src="path/to/work1.jpg" alt="Trabalho 1" style="width: 100%; border-radius: 10px;">
-        </div>
-        <div>
-            <img src="path/to/work2.jpg" alt="Trabalho 2" style="width: 100%; border-radius: 10px;">
-        </div>
-        <div>
-            <img src="path/to/work3.jpg" alt="Trabalho 3" style="width: 100%; border-radius: 10px;">
-        </div>
-    </div>
     <div class="cta">
         <a href="https://www.behance.net/herminimiranda">Conheça meu trabalho no Behance</a>
+    </div>
+    <div class="work-section">
+        <div>
+            <img src="path/to/work1.jpg" alt="Trabalho 1">
+        </div>
+        <div>
+            <img src="path/to/work2.jpg" alt="Trabalho 2">
+        </div>
+        <div>
+            <img src="path/to/work3.jpg" alt="Trabalho 3">
+        </div>
     </div>
 
     <h2 class="section-title">Fotografias e Vídeos</h2>
@@ -168,6 +170,12 @@
         <div>
             <img src="path/to/aerial4.jpg" alt="Fotografia Aérea 4">
         </div>
+        <div>
+            <img src="path/to/aerial5.jpg" alt="Fotografia Aérea 5">
+        </div>
+        <div>
+            <img src="path/to/aerial6.jpg" alt="Fotografia Aérea 6">
+        </div>
     </div>
     <div class="cta">
         <a href="link-to-more-aerial-photos">Ver mais fotografias aéreas</a>
@@ -175,7 +183,7 @@
 
     <div id="aboutSection" class="about hidden">
         <h2>Sobre Mim</h2>
-        <p>Olá! Sou um designer gráfico com uma paixão por criar visuais impactantes e funcionais...</p>
+        <p>Olá! Sou um designer gráfico com uma paixão por criar visuais impactantes e funcionais. Tenho uma vasta experiência na área...</p>
     </div>
 
     <div id="solutionsSection" class="solutions hidden">

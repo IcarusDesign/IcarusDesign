@@ -14,10 +14,6 @@
             color: #333;
         }
 
-        nav {
-            display: none; /* Removed */
-        }
-
         .header-content {
             display: flex;
             justify-content: space-between;
@@ -48,7 +44,7 @@
         .btn {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #ff0001; /* Botões CTA */
             color: white;
             text-decoration: none;
             border-radius: 5px;
@@ -67,15 +63,16 @@
 
         .portfolio-images {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             flex-wrap: wrap;
+            gap: 20px; /* Espaço entre as imagens */
         }
 
         .portfolio-images img {
-            width: 1080px;
-            height: 1350px;
+            width: 300px;
+            height: 375px;
+            object-fit: cover;
             border-radius: 10px;
-            margin: 10px;
         }
 
         .photo-section {
@@ -98,7 +95,7 @@
 
         /* New sections for About, Solutions, and Contact */
         .info-section {
-            background-color: orange;
+            background-color: #ff4300; /* Cor laranja */
             padding: 40px;
             margin: 20px;
             border-radius: 10px;
@@ -113,6 +110,7 @@
 
         .info-section p {
             font-size: 1rem;
+            font-weight: normal; /* Texto regular */
         }
 
         #content {
@@ -129,13 +127,21 @@
             display: block;
         }
 
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 40px;
+            background-color: #ff4300;
+            color: white;
+            border-radius: 10px;
+            margin: 20px;
+            font-weight: bold;
+        }
+
         @media (max-width: 768px) {
             .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            nav {
                 flex-direction: column;
                 text-align: center;
             }
@@ -188,16 +194,22 @@
     <div class="info-section">
         <h2>About</h2>
         <p>Sou um designer gráfico com uma paixão por criar visuais impactantes e funcionais. Tenho uma vasta experiência na área, com trabalhos realizados tanto como freelancer quanto em empresas, sempre buscando soluções criativas para os desafios dos meus clientes.</p>
+        <p>Além do design gráfico, sou um entusiasta da tecnologia e trabalho com drones profissionais para capturar imagens e vídeos aéreos. Com esses equipamentos, consigo trazer uma nova perspectiva para meus projetos, criando conteúdos visuais únicos e dinâmicos.</p>
+        <p>Ao longo da minha carreira, já produzi diversos trabalhos que podem ser vistos no meu portfólio no Behance, e também compartilho vídeos profissionais nas redes sociais, como o Facebook e Instagram.</p>
+        <p>Minha missão é transformar ideias em realidade através de um design inovador e soluções criativas, sempre buscando a satisfação total dos meus clientes. Se está à procura de um profissional que alia criatividade e tecnologia para destacar o seu projeto, está no lugar certo!</p>
     </div>
 
     <div class="info-section">
         <h2>Solutions</h2>
-        <p>Transformo ideias em imagens que contam histórias, além de oferecer serviços de edição de vídeo e imagens aéreas para campanhas publicitárias, vídeos institucionais e muito mais.</p>
+        <p><strong>Design Gráfico:</strong> Transformo ideias em imagens que contam histórias. Desde a criação de logotipos, branding, design de materiais impressos e digitais, cada projeto é pensado para refletir a essência do seu negócio e atrair o seu público-alvo.</p>
+        <p><strong>Imagens e Vídeos Aéreos:</strong> Caputuro ângulos únicos e criativos que podem ser utilizados em campanhas publicitárias, vídeos institucionais, eventos, ou até mesmo para a promoção de propriedades imobiliárias. As imagens aéreas trazem uma nova perspectiva para o seu projeto.</p>
+        <p><strong>Edição e colorização de Vídeos:</strong> Ofereço também serviços completos de edição de vídeo, transformando capturas brutas em produções profissionais e dinâmicas. Seja para redes sociais ou outros canais, cada vídeo é editado para captar a atenção do seu público de forma eficiente.</p>
+        <p><strong>Soluções Personalizadas:</strong> Entendo que cada projeto é único, e é por isso que ofereço soluções personalizadas que se alinham perfeitamente às suas necessidades. Desde o primeiro contato até a entrega final, cada detalhe é tratado com atenção e dedicação.</p>
     </div>
 
-    <div class="info-section">
-        <h2>Contact Us</h2>
-        <p>Tel: 9893666<br>Email: herminiltonmiranda2001@gmail.com</p>
+    <div class="contact-info">
+        <p>Tel: 9893666</p>
+        <p>Email: herminiltonmiranda2001@gmail.com</p>
     </div>
 
     <!-- Call to Action para Videos Aereos -->

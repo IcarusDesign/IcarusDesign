@@ -56,7 +56,8 @@
         .header-content .photo-box {
             width: 200px;
             height: 200px;
-            background-color: #ccc;
+            background-image: url('profile.jpg');
+            background-size: cover;
             border-radius: 10px;
         }
 
@@ -93,29 +94,6 @@
             margin: 10px;
         }
 
-        .video-section {
-            padding: 50px;
-        }
-
-        .video-section h2 {
-            margin-bottom: 30px;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .video-grid {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        .video-grid video {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 10px;
-            margin: 10px;
-        }
-
         .photo-section {
             padding: 50px;
             text-align: center;
@@ -127,10 +105,9 @@
             flex-wrap: wrap;
         }
 
-        .photo-grid div {
+        .photo-grid img {
             width: 300px;
             height: 200px;
-            background-color: #ccc;
             border-radius: 10px;
             margin: 10px;
         }
@@ -166,11 +143,11 @@
                 margin: 10px 0;
             }
 
-            .portfolio-images, .video-grid, .photo-grid {
+            .portfolio-images, .photo-grid {
                 flex-direction: column;
             }
 
-            .portfolio-images img, .video-grid video, .photo-grid div {
+            .portfolio-images img, .photo-grid img {
                 width: 100%;
                 max-width: 400px;
                 margin-bottom: 20px;
@@ -198,36 +175,27 @@
             <a href="https://www.behance.net/herminimiranda" class="btn">Conheça meu trabalho</a>
         </div>
         <div class="photo-box">
-            <!-- Adicionar imagem do perfil aqui -->
+            <!-- Foto de perfil -->
         </div>
     </div>
 
     <div class="portfolio-section">
         <h2>Um pouco do meu trabalho</h2>
         <div class="portfolio-images">
-            <img src="imagem1.jpg" alt="Trabalho 1" class="work-image">
-            <img src="imagem2.jpg" alt="Trabalho 2" class="work-image">
-            <img src="imagem3.jpg" alt="Trabalho 3" class="work-image">
-        </div>
-    </div>
-
-    <div class="video-section">
-        <h2>Fotografias e Vídeos</h2>
-        <div class="video-grid">
-            <video controls></video>
-            <video controls></video>
+            <img src="imagem1.jpg" alt="Trabalho 1">
+            <img src="imagem2.jpg" alt="Trabalho 2">
+            <img src="imagem3.jpg" alt="Trabalho 3">
         </div>
     </div>
 
     <div class="photo-section">
         <h2>Fotografias Aéreas</h2>
         <div class="photo-grid">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <img src="aerial1.jpg" alt="Fotografia Aérea 1">
+            <img src="aerial2.jpg" alt="Fotografia Aérea 2">
+            <img src="aerial3.jpg" alt="Fotografia Aérea 3">
+            <img src="aerial4.jpg" alt="Fotografia Aérea 4">
         </div>
-        <a href="#" class="btn">Ver mais</a>
     </div>
 
     <div id="content">
@@ -267,5 +235,18 @@
         </div>
     </div>
 
+    <!-- Call to Action para Videos Aereos -->
+    <div style="text-align: center; padding: 30px;">
+        <a href="https://www.instagram.com/iam_hermi/reels/" class="btn">Videos Aereos</a>
+    </div>
+
+    <!-- Call to Action para Artes Para Eventos -->
+    <div style="text-align: center; padding: 30px;">
+        <a href="https://www.instagram.com/icarus_design7/" class="btn">Artes Para Eventos</a>
+    </div>
+
     <script>
-        function showSection(sectionId
+        function showSection(sectionId) {
+            var sections = document.getElementsByClassName('section-content');
+            for (var i = 0; i < sections.length; i++) {
+                sections

@@ -4,204 +4,202 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Icarus Design - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
+        :root {
+            --primary-bg: #0a0a0a;
+            --text-color: #ffffff;
+            --accent-color: #ff3b3b;
+            --card-bg: #1a1a1a;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: #12130f;
-            color: #000000;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
         .header-content {
-            display: flex;
-            justify-content: center; 
-            align-items: center;
-            padding: 50px;
-            background-color: #000000;
-            flex-wrap: wrap;
             text-align: center;
+            padding: clamp(2rem, 5vw, 4rem);
+            background-color: #000;
         }
 
         .logo {
-            width: 300px;
-            opacity: 1;
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .btn {
             display: inline-block;
-            padding: 10px 20px;
-            background-color: #ff0001;
-            color: white;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--accent-color);
+            color: #fff;
             text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #e03333;
+            transform: translateY(-2px);
+        }
+
+        .section {
+            padding: clamp(2rem, 5vw, 4rem);
             text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
-        .portfolio-section {
-            padding: 50px;
-            text-align: center;
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .portfolio-section h2 {
-            margin-bottom: 30px;
-            font-weight: bold;
-            color: #ffffff;
+        .section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
         }
 
-        .portfolio-images {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 20px;
+        .portfolio-grid, .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            justify-items: center;
         }
 
-        .portfolio-images img {
-            width: 400px;
-            height: 475px;
+        .portfolio-grid img, .photo-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
             object-fit: cover;
-            border-radius: 10px;
+            transition: transform 0.3s ease;
         }
 
-        .photo-section {
-            padding: 50px;
-            text-align: center;
-        }
-
-        .photo-section h2 {
-            color: #ffffff;
-        }
-
-        .photo-grid {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        .photo-grid img {
-            width: 300px;
-            height: 200px;
-            border-radius: 10px;
-            margin: 10px;
+        .portfolio-grid img:hover, .photo-grid img:hover {
+            transform: scale(1.03);
         }
 
         .info-section {
-            background-color: #023C40;
-            padding: 40px;
-            margin: 20px;
-            border-radius: 10px;
-            text-align: center;
-            color: white;
-        }
-
-        .info-section h2 {
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .solutions-section {
-            padding: 50px;
-            text-align: center;
-        }
-
-        .solutions-section h2 {
-            margin-bottom: 20px;
-            color: #ffffff;
+            background-color: var(--card-bg);
+            padding: 2rem;
+            margin: 1rem auto;
+            max-width: 800px;
+            border-radius: 12px;
         }
 
         .solution-cards {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
 
         .solution-card {
-            background-color: #023C40;
-            padding: 20px;
-            border-radius: 10px;
-            width: 30%;
-            color: white;
-            text-align: center;
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
         }
 
         .contact-info {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            padding: 10px;
-            background-color: #ff4300;
-            color: white;
-            border-radius: 10px;
-            margin: 10px;
-            font-weight: Medium;
+            background-color: var(--accent-color);
+            padding: 1.5rem;
+            margin: 1rem auto;
+            max-width: 600px;
+            border-radius: 12px;
+            font-weight: 500;
         }
 
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .portfolio-images, .photo-grid {
-                flex-direction: column;
-            }
-
-            .portfolio-images img, .photo-grid img {
-                width: 100%;
-                max-width: 400px;
-                margin-bottom: 20px;
+            .portfolio-grid, .photo-grid {
+                grid-template-columns: 1fr;
             }
 
             .solution-cards {
-                flex-direction: column;
+                grid-template-columns: 1fr;
             }
 
-            .solution-card {
-                width: 100%;
+            .btn {
+                padding: 0.6rem 1.2rem;
             }
         }
     </style>
 </head>
 <body>
+    <header class="header-content">
+        <img src="logo.png" alt="Icarus Design Logo" class="logo" loading="lazy">
+    </header>
 
-    <div class="header-content">
-        <img src="logo.png" alt="Logo" class="logo">
-    </div>
-
-    <div class="portfolio-section">
+    <section class="section portfolio-section" id="portfolio">
         <h2>Um pouco do meu trabalho</h2>
-        <div class="portfolio-images">
-            <img src="imagem1.jpg" alt="Trabalho 1">
-            <img src="imagem2.jpg" alt="Trabalho 2">
-            <img src="imagem3.jpg" alt="Trabalho 3">
+        <div class="portfolio-grid">
+            <picture>
+                <source srcset="imagem1.webp" type="image/webp">
+                <img src="imagem1.jpg" alt="Trabalho 1" loading="lazy">
+            </picture>
+            <picture>
+                <source srcset="imagem2.webp" type="image/webp">
+                <img src="imagem2.jpg" alt="Trabalho 2" loading="lazy">
+            </picture>
+            <picture>
+                <source srcset="imagem3.webp" type="image/webp">
+                <img src="imagem3.jpg" alt="Trabalho 3" loading="lazy">
+            </picture>
         </div>
-        <div style="text-align: center; margin-top: 20px;">
-            <a href="https://www.behance.net/herminimiranda" class="btn" target="_blank">CLIQUE AQUI E CONHEÇA MAIS DO MEU TRABALHO</a>
-        </div>
-    </div>
+        <a href="https://www.behance.net/herminimiranda" class="btn" target="_blank" aria-label="View more work on Behance">CLIQUE AQUI E CONHEÇA MAIS DO MEU TRABALHO</a>
+    </section>
 
-    <div class="photo-section">
+    <section class="section photo-section" id="photos">
         <h2>Fotografias Aéreas</h2>
         <div class="photo-grid">
-            <img src="aerial1.jpg" alt="Fotografia Aérea 1">
-            <img src="aerial2.jpg" alt="Fotografia Aérea 2">
-            <img src="aerial3.jpg" alt="Fotografia Aérea 3">
-            <img src="aerial4.jpg" alt="Fotografia Aérea 4">
+            <picture>
+                <source srcset="aerial1.webp" type="image/webp">
+                <img src="aerial1.jpg" alt="Fotografia Aérea 1" loading="lazy">
+            </picture>
+            <picture>
+                <source srcset="aerial2.webp" type="image/webp">
+                <img src="aerial2.jpg" alt="Fotografia Aérea 2" loading="lazy">
+            </picture>
+            <picture>
+                <source srcset="aerial3.webp" type="image/webp">
+                <img src="aerial3.jpg" alt="Fotografia Aérea 3" loading="lazy">
+            </picture>
+            <picture>
+                <source srcset="aerial4.webp" type="image/webp">
+                <img src="aerial4.jpg" alt="Fotografia Aérea 4" loading="lazy">
+            </picture>
         </div>
-        <div style="text-align: center; margin-top: 20px;">
-            <a href="https://www.youtube.com/@hermytutorials8481/videos" class="btn" target="_blank">CLIQUE AQUI PARA VER MEUS VÍDEOS</a>
-        </div>
-    </div>
+        <a href="https://www.youtube.com/@hermytutorials8481/videos" class="btn" target="_blank" aria-label="Watch videos on YouTube">CLIQUE AQUI PARA VER MEUS VÍDEOS</a>
+    </section>
 
-    <div class="info-section">
+    <section class="section info-section">
         <h2>About</h2>
         <p>Sou um designer gráfico com uma paixão por criar visuais impactantes e funcionais. Tenho uma vasta experiência na área, com trabalhos realizados tanto como freelancer quanto em empresas, sempre buscando soluções criativas para os desafios dos meus clientes. Além do design gráfico, sou um entusiasta da tecnologia e trabalho com drones profissionais para capturar imagens e vídeos aéreos.</p>
-    </div>
+    </section>
 
-    <div class="solutions-section">
+    <section class="section solutions-section" id="solutions">
         <h2>Solutions</h2>
         <div class="solution-cards">
             <div class="solution-card">
@@ -217,12 +215,37 @@
                 <p>Serviços completos de edição de vídeo para redes sociais ou outros canais.</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="contact-info">
-        <p>Tel: 9893666</p>
-        <p>Email: herminiltonmiranda2001@gmail.com</p>
-    </div>
+    <section class="section contact-info">
+        <h2>Contact</h2>
+        <p>Tel: <a href="tel:+9893666" aria-label="Phone number">9893666</a></p>
+        <p>Email: <a href="mailto:herminiltonmiranda2001@gmail.com" aria-label="Email address">herminiltonmiranda2001@gmail.com</a></p>
+    </section>
 
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Fade-in animation for sections
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => observer.observe(section));
+    </script>
 </body>
 </html>

@@ -132,6 +132,23 @@
             font-weight: 500;
         }
 
+        .whatsapp-button {
+            display: inline-block;
+            margin-top: 1rem;
+            background-color: #25D366;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #1ebe5b;
+            transform: translateY(-2px);
+        }
+
         @media (max-width: 768px) {
             .portfolio-grid, .photo-grid {
                 grid-template-columns: 1fr;
@@ -156,16 +173,13 @@
         <h2>Um pouco do meu trabalho</h2>
         <div class="portfolio-grid">
             <picture>
-                <source srcset="image1.webp" type="image/webp">
-                <img src="image1.webp" alt="Trabalho 1" loading="lazy">
+                <img src="imagem1.jpg" alt="Trabalho 1" loading="lazy">
             </picture>
             <picture>
-                <source srcset="image2.webp" type="image/webp">
-                <img src="image2.webp" alt="Trabalho 2" loading="lazy">
+                <img src="imagem2.jpg" alt="Trabalho 2" loading="lazy">
             </picture>
             <picture>
-                <source srcset="image3.webp" type="image/webp">
-                <img src="image3.webp" alt="Trabalho 3" loading="lazy">
+                <img src="imagem3.jpg" alt="Trabalho 3" loading="lazy">
             </picture>
         </div>
         <a href="https://www.behance.net/herminimiranda" class="btn" target="_blank" aria-label="View more work on Behance">CLIQUE AQUI E CONHEÇA MAIS DO MEU TRABALHO</a>
@@ -175,16 +189,16 @@
         <h2>Fotografias Aéreas</h2>
         <div class="photo-grid">
             <picture>
-                <source srcset="aerial1.webp" type="image/webp">
-                <img src="aerial1.webp" alt="Fotografia Aérea 1" loading="lazy">
+                <img src="aerial1.jpg" alt="Fotografia Aérea 1" loading="lazy">
             </picture>
             <picture>
-                <source srcset="aerial2.webp" type="image/webp">
-                <img src="aerial2.webp" alt="Fotografia Aérea 2" loading="lazy">
+                <img src="aerial2.jpg" alt="Fotografia Aérea 2" loading="lazy">
             </picture>
             <picture>
-                <source srcset="aerial3.webp" type="image/webp">
-                <img src="aerial3.webp" alt="Fotografia Aérea 3" loading="lazy">
+                <img src="aerial3.jpg" alt="Fotografia Aérea 3" loading="lazy">
+            </picture>
+            <picture>
+                <img src="aerial4.jpg" alt="Fotografia Aérea 4" loading="lazy">
             </picture>
         </div>
         <a href="https://www.youtube.com/@hermytutorials8481/videos" class="btn" target="_blank" aria-label="Watch videos on YouTube">CLIQUE AQUI PARA VER MEUS VÍDEOS</a>
@@ -217,6 +231,7 @@
         <h2>Contact</h2>
         <p>Tel: <a href="tel:+9893666" aria-label="Phone number">9893666</a></p>
         <p>Email: <a href="mailto:herminiltonmiranda2001@gmail.com" aria-label="Email address">herminiltonmiranda2001@gmail.com</a></p>
+        <a href="https://wa.me/2389893666" class="whatsapp-button" target="_blank" aria-label="WhatsApp contact">Fale comigo no WhatsApp</a>
     </section>
 
     <script>

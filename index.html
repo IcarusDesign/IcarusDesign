@@ -1,262 +1,476 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Icarus Design - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-bg: #0a0a0a;
-            --text-color: #ffffff;
-            --accent-color: #ff3b3b;
-            --card-bg: #1a1a1a;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Icarus Design - Creative graphic design and aerial photography portfolio by Hermini Miranda." />
+  <meta name="keywords" content="graphic design, aerial photography, drone videos, branding, portfolio" />
+  <meta name="author" content="Hermini Miranda" />
+  <title>Icarus Design - Creative Portfolio</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <!-- Lightbox CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-bg: #0a0a0a;
+      --text-color: #ffffff;
+      --accent-color: #ff4d4d;
+      --secondary-accent: #00ddeb;
+      --card-bg: #1c1c1e;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--primary-bg);
-            color: var(--text-color);
-            line-height: 1.6;
-            scroll-behavior: smooth;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--primary-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
 
-        .header-content {
-            text-align: center;
-            padding: clamp(2rem, 5vw, 4rem);
-            background-color: #000;
-        }
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        .logo {
-            width: 100%;
-            max-width: 250px;
-            height: auto;
-            transition: transform 0.3s ease;
-        }
+    .nav-logo {
+      height: 40px;
+      transition: transform 0.3s ease;
+    }
 
-        .logo:hover {
-            transform: scale(1.05);
-        }
+    .nav-logo:hover {
+      transform: scale(1.1);
+    }
 
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background-color: var(--accent-color);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
 
-        .btn:hover {
-            background-color: #e03333;
-            transform: translateY(-2px);
-        }
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
 
-        .section {
-            padding: clamp(2rem, 5vw, 4rem);
-            text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
+    .nav-links a:hover {
+      color: var(--accent-color);
+    }
 
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('hero-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      padding: 2rem;
+    }
 
-        .section h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
 
-        .portfolio-grid, .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            justify-items: center;
-        }
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
 
-        .portfolio-grid img, .photo-grid img {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background-color: var(--accent-color);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
 
-        .portfolio-grid img:hover, .photo-grid img:hover {
-            transform: scale(1.03);
-        }
+    .btn:hover {
+      background-color: #e63939;
+      transform: translateY(-3px);
+    }
 
-        .info-section {
-            background-color: var(--card-bg);
-            padding: 2rem;
-            margin: 1rem auto;
-            max-width: 800px;
-            border-radius: 12px;
-        }
+    /* General Section Styling */
+    .section {
+      padding: clamp(4rem, 10vw, 6rem) 2rem;
+      text-align: center;
+    }
 
-        .solution-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
+    .section h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 2rem;
+      position: relative;
+    }
 
-        .solution-card {
-            background-color: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 12px;
-            transition: transform 0.3s ease;
-        }
+    .section h2::after {
+      content: '';
+      width: 50px;
+      height: 4px;
+      background: var(--accent-color);
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-        .solution-card:hover {
-            transform: translateY(-5px);
-        }
+    /* Portfolio & Photos */
+    .portfolio-grid, .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 2rem 0;
+    }
 
-        .contact-info {
-            background-color: var(--accent-color);
-            padding: 1.5rem;
-            margin: 1rem auto;
-            max-width: 600px;
-            border-radius: 12px;
-            font-weight: 500;
-        }
+    .portfolio-grid img, .photo-grid img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: var(--shadow);
+    }
 
-        .whatsapp-button {
-            display: inline-block;
-            margin-top: 1rem;
-            background-color: #25D366;
-            color: #fff;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
+    .portfolio-grid img:hover, .photo-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
 
-        .whatsapp-button:hover {
-            background-color: #1ebe5b;
-            transform: translateY(-2px);
-        }
+    /* About Section */
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
 
-        @media (max-width: 768px) {
-            .portfolio-grid, .photo-grid {
-                grid-template-columns: 1fr;
-            }
+    /* Solutions Section */
+    .solution-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
 
-            .solution-cards {
-                grid-template-columns: 1fr;
-            }
+    .solution-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+      box-shadow: var(--shadow);
+    }
 
-            .btn {
-                padding: 0.6rem 1.2rem;
-            }
-        }
-    </style>
+    .solution-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .solution-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--secondary-accent);
+    }
+
+    /* Contact Section */
+    .contact-form {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: #2c2c2e;
+      color: var(--text-color);
+      font-size: 1rem;
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    .contact-info {
+      margin-top: 2rem;
+      font-size: 1rem;
+    }
+
+    .contact-info a {
+      color: var(--secondary-accent);
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background: #000;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .social-links {
+      margin-bottom: 1rem;
+    }
+
+    .social-links a {
+      color: var(--text-color);
+      margin: 0 1rem;
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: var(--accent-color);
+    }
+
+    /* Scroll to Top */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--accent-color);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: none;
+      z-index: 999;
+      transition: background 0.3s ease;
+    }
+
+    #scrollTopBtn:hover {
+      background: #e63939;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+      }
+
+      .portfolio-grid, .photo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .solution-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .btn {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .section {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header class="header-content">
-        <img src="logo.png" alt="Icarus Design Logo" class="logo" loading="lazy">
-    </header>
+  <!-- Navigation -->
+  <nav>
+    <img src="logo.png" alt="Icarus Design Logo" class="nav-logo" loading="lazy" />
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#photos">Aerial Photos</a>
+      <a href="#about">About</a>
+      <a href="#solutions">Solutions</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-    <section class="section portfolio-section" id="portfolio">
-        <h2>Um pouco do meu trabalho</h2>
-        <div class="portfolio-grid">
-            <picture>
-                <img src="imagem1.jpg" alt="Trabalho 1" loading="lazy">
-            </picture>
-            <picture>
-                <img src="imagem2.jpg" alt="Trabalho 2" loading="lazy">
-            </picture>
-            <picture>
-                <img src="imagem3.jpg" alt="Trabalho 3" loading="lazy">
-            </picture>
-        </div>
-        <a href="https://www.behance.net/herminimiranda" class="btn" target="_blank" aria-label="View more work on Behance">CLIQUE AQUI E CONHEÇA MAIS DO MEU TRABALHO</a>
-    </section>
+  <!-- Hero Section -->
+  <section id="home" class="hero" data-aos="fade-up">
+    <h1>Welcome to Icarus Design</h1>
+    <p>Crafting stunning visuals and capturing breathtaking aerial perspectives for your brand.</p>
+    <a href="#portfolio" class="btn">Explore My Work</a>
+  </section>
 
-    <section class="section photo-section" id="photos">
-        <h2>Fotografias Aéreas</h2>
-        <div class="photo-grid">
-            <picture>
-                <img src="aerial1.jpg" alt="Fotografia Aérea 1" loading="lazy">
-            </picture>
-            <picture>
-                <img src="aerial2.jpg" alt="Fotografia Aérea 2" loading="lazy">
-            </picture>
-            <picture>
-                <img src="aerial3.jpg" alt="Fotografia Aérea 3" loading="lazy">
-            </picture>
-            <picture>
-                <img src="aerial4.jpg" alt="Fotografia Aérea 4" loading="lazy">
-            </picture>
-        </div>
-        <a href="https://www.youtube.com/@hermytutorials8481/videos" class="btn" target="_blank" aria-label="Watch videos on YouTube">CLIQUE AQUI PARA VER MEUS VÍDEOS</a>
-    </section>
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="section" data-aos="fade-up">
+    <h2>My Portfolio</h2>
+    <div class="portfolio-grid">
+      <a href="imagem1.jpg" data-lightbox="portfolio" data-title="Project 1">
+        <img src="imagem1.jpg" alt="Graphic Design Project 1" loading="lazy" />
+      </a>
+      <a href="imagem2.jpg" data-lightbox="portfolio" data-title="Project 2">
+        <img src="imagem2.jpg" alt="Graphic Design Project 2" loading="lazy" />
+      </a>
+      <a href="imagem3.jpg" data-lightbox="portfolio" data-title="Project 3">
+        <img src="imagem3.jpg" alt="Graphic Design Project 3" loading="lazy" />
+      </a>
+    </div>
+    <a href="https://www.behance.net/herminimiranda" class="btn" target="_blank">View More on Behance</a>
+  </section>
 
-    <section class="section info-section">
-        <h2>About</h2>
-        <p>Sou um designer gráfico com uma paixão por criar visuais impactantes e funcionais. Tenho uma vasta experiência na área, com trabalhos realizados tanto como freelancer quanto em empresas, sempre buscando soluções criativas para os desafios dos meus clientes. Além do design gráfico, sou um entusiasta da tecnologia e trabalho com drones profissionais para capturar imagens e vídeos aéreos.</p>
-    </section>
+  <!-- Aerial Photos Section -->
+  <section id="photos" class="section" data-aos="fade-up">
+    <h2>Aerial Photography</h2>
+    <div class="photo-grid">
+      <a href="aerial1.jpg" data-lightbox="aerial" data-title="Aerial Shot 1">
+        <img src="aerial1.jpg" alt="Aerial Photography 1" loading="lazy" />
+      </a>
+      <a href="aerial2.jpg" data-lightbox="aerial" data-title="Aerial Shot 2">
+        <img src="aerial2.jpg" alt="Aerial Photography 2" loading="lazy" />
+      </a>
+      <a href="aerial3.jpg" data-lightbox="aerial" data-title="Aerial Shot 3">
+        <img src="aerial3.jpg" alt="Aerial Photography 3" loading="lazy" />
+      </a>
+      <a href="aerial4.jpg" data-lightbox="aerial" data-title="Aerial Shot 4">
+        <img src="aerial4.jpg" alt="Aerial Photography 4" loading="lazy" />
+      </a>
+    </div>
+    <a href="https://www.youtube.com/@hermytutorials8481/videos" class="btn" target="_blank">Watch My Videos</a>
+  </section>
 
-    <section class="section solutions-section" id="solutions">
-        <h2>Solutions</h2>
-        <div class="solution-cards">
-            <div class="solution-card">
-                <h3>Design Gráfico</h3>
-                <p>Transformo ideias em imagens que contam histórias. Logotipos, branding, design de materiais impressos e digitais, gestão de redes sociais etc.</p>
-            </div>
-            <div class="solution-card">
-                <h3>Imagens e Vídeos Aéreos</h3>
-                <p>Capturo ângulos únicos e criativos para campanhas publicitárias, vídeos institucionais e eventos.</p>
-            </div>
-            <div class="solution-card">
-                <h3>Edição e Colorização de Vídeos</h3>
-                <p>Serviços completos de edição de vídeo para redes sociais ou outros canais.</p>
-            </div>
-        </div>
-    </section>
+  <!-- About Section -->
+  <section id="about" class="section" data-aos="fade-up">
+    <h2>About Me</h2>
+    <div class="about-content">
+      <p>I'm a passionate graphic designer and aerial photographer dedicated to transforming ideas into captivating visuals. With years of experience in branding, digital design, and drone photography, I deliver creative solutions tailored to my clients' needs. My work blends artistry with technology to create impactful stories.</p>
+    </div>
+  </section>
 
-    <section class="section contact-info">
-        <h2>Contact</h2>
-        <p>Tel: <a href="tel:+9893666" aria-label="Phone number">9893666</a></p>
-        <p>Email: <a href="mailto:herminiltonmiranda2001@gmail.com" aria-label="Email address">herminiltonmiranda2001@gmail.com</a></p>
-        <a href="https://wa.me/2389893666" class="whatsapp-button" target="_blank" aria-label="WhatsApp contact">Fale comigo no WhatsApp</a>
-    </section>
+  <!-- Solutions Section -->
+  <section id="solutions" class="section" data-aos="fade-up">
+    <h2>Our Solutions</h2>
+    <div class="solution-cards">
+      <div class="solution-card">
+        <h3>Graphic Design</h3>
+        <p>From logos to full-scale branding, I create visuals that resonate and engage your audience across print and digital platforms.</p>
+      </div>
+      <div class="solution-card">
+        <h3>Aerial Imagery</h3>
+        <p>Using professional drones, I capture stunning photos and videos for ads, events, and corporate projects.</p>
+      </div>
+      <div class="solution-card">
+        <h3>Video Editing</h3>
+        <p>Professional editing and color grading to make your videos stand out on social media and beyond.</p>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+  <!-- Contact Section -->
+  <section id="contact" class="section" data-aos="fade-up">
+    <h2>Get in Touch</h2>
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+    <div class="contact-info">
+      <p>Phone: <a href="tel:+9893666">9893666</a></p>
+      <p>Email: <a href="mailto:herminiltonmiranda2001@gmail.com">herminiltonmiranda2001@gmail.com</a></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-links">
+      <a href="https://www.behance.net/herminimiranda" target="_blank" aria-label="Behance"><i class="fab fa-behance"></i></a>
+      <a href="https://www.youtube.com/@hermytutorials8481" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p>&copy; 2025 Icarus Design. All rights reserved.</p>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button id="scrollTopBtn" title="Back to Top">↑</button>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({ duration: 1000, once: true });
+
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
         });
+      });
+    });
 
-        // Fade-in animation for sections
-        const sections = document.querySelectorAll('.section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
+    // Scroll to Top Button
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      scrollBtn.style.display = window.scrollY > 400 ? 'block' : 'none';
+    });
 
-        sections.forEach(section => observer.observe(section));
-    </script>
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Form Submission (Placeholder)
+    document.querySelector('.contact-form').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Form submitted! (This is a placeholder - connect to a backend for real functionality.)');
+    });
+  </script>
+  <!-- Font Awesome for Icons -->
+  <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
 </body>
 </html>

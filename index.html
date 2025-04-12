@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Herminilton Miranda - Portfolio</title>
+    <title>Icarus Studios - HM</title>
     <style>
     /* Apple-inspired Global Styles */
     :root {
-        --apple-black: #000;
-        --apple-dark-gray: #1d1d1f;
+        --apple-white: #ffffff;
         --apple-light-gray: #f5f5f7;
+        --apple-light-gray-2: #e5e5e7;
+        --apple-dark-gray: #1d1d1f;
         --apple-blue: #0071e3;
         --apple-blue-hover: #0077ED;
         --apple-whatsapp: #25D366;
         --apple-whatsapp-hover: #20bd5a;
         --apple-text-gray: #86868b;
-        --apple-card-bg: rgba(245, 245, 247, 0.05);
+        --apple-card-bg: rgba(0, 0, 0, 0.05);
     }
     
     * {
@@ -26,8 +27,8 @@
     }
     
     body {
-        background-color: var(--apple-black);
-        color: var(--apple-light-gray);
+        background-color: var(--apple-white);
+        color: var(--apple-dark-gray);
         line-height: 1.6;
         scroll-behavior: smooth;
         -webkit-font-smoothing: antialiased;
@@ -46,7 +47,7 @@
     
     /* Apple-like Header */
     .header {
-        background-color: rgba(0, 0, 0, 0.72);
+        background-color: rgba(255, 255, 255, 0.72);
         position: fixed;
         top: 0;
         left: 0;
@@ -54,7 +55,7 @@
         z-index: 100;
         backdrop-filter: saturate(180%) blur(20px);
         -webkit-backdrop-filter: saturate(180%) blur(20px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         height: 52px;
     }
     
@@ -65,10 +66,22 @@
         height: 100%;
     }
     
+    .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-right: auto;
+    }
+    
     .logo {
         height: 20px;
         width: auto;
-        margin-right: auto;
+    }
+
+    .logo-text {
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--apple-dark-gray);
     }
 
     .nav-links {
@@ -78,7 +91,7 @@
     }
 
     .nav-link {
-        color: var(--apple-light-gray);
+        color: var(--apple-dark-gray);
         text-decoration: none;
         font-size: 14px;
         font-weight: 400;
@@ -96,7 +109,7 @@
         display: none;
         background: none;
         border: none;
-        color: var(--apple-light-gray);
+        color: var(--apple-dark-gray);
         font-size: 20px;
         cursor: pointer;
         padding: 8px;
@@ -112,7 +125,7 @@
         align-items: center;
         text-align: center;
         padding: 120px 20px 60px;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 100%);
+        background: linear-gradient(to bottom, rgba(245,245,247,0.9) 0%, rgba(245,245,247,0.7) 100%);
         background-size: cover;
         background-position: center;
         position: relative;
@@ -123,7 +136,7 @@
         font-size: 64px;
         line-height: 1.1;
         margin-bottom: 16px;
-        background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+        background: linear-gradient(120deg, #0071e3 0%, #2997ff 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -137,7 +150,7 @@
         font-size: 28px;
         max-width: 700px;
         margin-bottom: 36px;
-        color: var(--apple-light-gray);
+        color: var(--apple-dark-gray);
         font-weight: 400;
         opacity: 0.8;
     }
@@ -181,6 +194,7 @@
     .portfolio-section {
         padding: 100px 0;
         scroll-margin-top: 70px;
+        background-color: var(--apple-light-gray);
     }
     
     .section-title {
@@ -201,10 +215,11 @@
         border-radius: 18px;
         overflow: hidden;
         transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
         height: 450px;
-        background-color: var(--apple-dark-gray);
+        background-color: var(--apple-white);
         position: relative;
+        border: 1px solid rgba(0, 0, 0, 0.1);
     }
     
     .portfolio-item:hover {
@@ -221,31 +236,32 @@
     .portfolio-item .image-placeholder {
         width: 100%;
         height: 100%;
-        background-color: #1a1a1a;
+        background-color: var(--apple-light-gray-2);
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 18px;
-        color: #888;
+        color: var(--apple-text-gray);
     }
 
     .portfolio-item .item-title {
         position: absolute;
         top: 20px;
         left: 20px;
-        background-color: rgba(0,0,0,0.7);
+        background-color: rgba(255,255,255,0.7);
         padding: 8px 16px;
         border-radius: 20px;
         font-size: 14px;
         font-weight: 500;
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
+        color: var(--apple-dark-gray);
     }
     
     /* Aerial Photos Section */
     .photo-section {
         padding: 100px 0;
-        background-color: var(--apple-dark-gray);
+        background-color: var(--apple-white);
         scroll-margin-top: 70px;
     }
     
@@ -261,8 +277,9 @@
         overflow: hidden;
         transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         height: 200px;
-        background-color: #1a1a1a;
+        background-color: var(--apple-light-gray-2);
         position: relative;
+        border: 1px solid rgba(0, 0, 0, 0.1);
     }
     
     .photo-item:hover {
@@ -279,31 +296,32 @@
     .photo-item .image-placeholder {
         width: 100%;
         height: 100%;
-        background-color: #222;
+        background-color: var(--apple-light-gray-2);
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 16px;
-        color: #888;
+        color: var(--apple-text-gray);
     }
 
     .photo-item .item-title {
         position: absolute;
         top: 15px;
         left: 15px;
-        background-color: rgba(0,0,0,0.7);
+        background-color: rgba(255,255,255,0.7);
         padding: 6px 14px;
         border-radius: 20px;
         font-size: 14px;
         font-weight: 500;
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
+        color: var(--apple-dark-gray);
     }
     
     /* About Section */
     .about-section {
         padding: 100px 0;
-        background: linear-gradient(135deg, #111111 0%, #222222 100%);
+        background: linear-gradient(135deg, var(--apple-light-gray) 0%, var(--apple-white) 100%);
         scroll-margin-top: 70px;
     }
     
@@ -318,8 +336,9 @@
         height: 300px;
         border-radius: 18px;
         overflow: hidden;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-        background-color: #1a1a1a;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        background-color: var(--apple-light-gray-2);
+        border: 1px solid rgba(0, 0, 0, 0.1);
     }
     
     .about-image img {
@@ -336,7 +355,7 @@
         align-items: center;
         justify-content: center;
         font-size: 16px;
-        color: #888;
+        color: var(--apple-text-gray);
     }
     
     .about-text {
@@ -350,7 +369,7 @@
     
     .about-text p {
         font-size: 19px;
-        color: var(--apple-text-gray);
+        color: var(--apple-dark-gray);
         line-height: 1.5;
         font-weight: 400;
     }
@@ -358,7 +377,7 @@
     /* Services Section */
     .services-section {
         padding: 100px 0;
-        background: linear-gradient(135deg, #000000 0%, #111111 100%);
+        background: linear-gradient(135deg, var(--apple-white) 0%, var(--apple-light-gray) 100%);
         scroll-margin-top: 70px;
     }
 
@@ -375,11 +394,13 @@
         min-width: 300px;
         text-align: center;
         padding: 40px 30px;
-        background: var(--apple-card-bg);
+        background: var(--apple-white);
         border-radius: 18px;
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         transition: transform 0.3s ease;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .service-item:hover {
@@ -407,7 +428,7 @@
     /* FAQ Section - Apple Style */
     .faq-section {
         padding: 100px 0;
-        background-color: var(--apple-dark-gray);
+        background-color: var(--apple-white);
         scroll-margin-top: 70px;
     }
 
@@ -417,15 +438,16 @@
     }
 
     .faq-item {
-        background: rgba(34, 34, 34, 0.7);
+        background: rgba(245, 245, 247, 0.7);
         border-radius: 12px;
         margin-bottom: 16px;
         overflow: hidden;
         transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .faq-item:hover {
-        background: rgba(44, 44, 44, 0.7);
+        background: rgba(235, 235, 237, 0.7);
     }
 
     .faq-question {
@@ -436,12 +458,14 @@
         cursor: pointer;
         font-size: 18px;
         font-weight: 500;
+        color: var(--apple-dark-gray);
     }
 
     .faq-question:after {
         content: '+';
         font-size: 24px;
         transition: transform 0.3s ease;
+        color: var(--apple-blue);
     }
 
     .faq-item:not(.collapsed) .faq-question:after {
@@ -466,26 +490,27 @@
     /* Contact Section */
     .contact-section {
         padding: 100px 0;
-        background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        background: linear-gradient(135deg, var(--apple-white) 0%, var(--apple-light-gray) 100%);
         text-align: center;
         scroll-margin-top: 70px;
     }
     
     .contact-info {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.9);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         border-radius: 18px;
         padding: 50px;
         max-width: 600px;
         margin: 0 auto;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.08);
     }
     
     .contact-info h2 {
         font-size: 40px;
         margin-bottom: 30px;
+        color: var(--apple-dark-gray);
     }
 
     .contact-methods {
@@ -501,12 +526,13 @@
         display: flex;
         align-items: center;
         gap: 12px;
+        color: var(--apple-dark-gray);
     }
 
     .contact-icon {
         width: 44px;
         height: 44px;
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: rgba(0, 0, 0, 0.05);
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -522,14 +548,40 @@
         margin-top: 40px;
     }
     
+    /* Coming Soon Page */
+    .coming-soon {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        min-height: 100vh;
+        padding: 120px 20px 60px;
+        background-color: var(--apple-white);
+    }
+    
+    .coming-soon h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+        color: var(--apple-dark-gray);
+    }
+    
+    .coming-soon p {
+        font-size: 24px;
+        font-style: italic;
+        color: var(--apple-text-gray);
+        max-width: 600px;
+        margin-bottom: 40px;
+    }
+    
     /* Footer */
     footer {
-        background-color: #000;
+        background-color: var(--apple-white);
         text-align: center;
         padding: 30px;
         color: var(--apple-text-gray);
         font-size: 14px;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
     }
     
     /* Media Queries - Responsive Design */
@@ -561,14 +613,14 @@
             top: 52px;
             left: 0;
             right: 0;
-            background-color: rgba(0, 0, 0, 0.95);
+            background-color: rgba(255, 255, 255, 0.95);
             flex-direction: column;
             padding: 20px;
             transition: transform 0.3s ease;
             transform: translateY(-150%);
             z-index: 99;
             gap: 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         }
         
         .nav-links.active {
@@ -626,6 +678,10 @@
             padding: 0 16px;
         }
         
+        .logo-text {
+            font-size: 16px;
+        }
+        
         .hero h1 {
             font-size: 32px;
         }
@@ -674,6 +730,14 @@
         .faq-answer {
             font-size: 15px;
         }
+        
+        .coming-soon h1 {
+            font-size: 36px;
+        }
+        
+        .coming-soon p {
+            font-size: 18px;
+        }
     }
 
     /* Apple-like Animations */
@@ -714,185 +778,199 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <div class="logo">
-                    <a href="#"><img src="/api/placeholder/60/30" alt="Logo"></a>
+                <div class="logo-container">
+                    <div class="logo">
+                        <a href="#"><img src="logo icarus.webp" alt="Icarus Logo"></a>
+                    </div>
+                    <div class="logo-text">ICARUS STUDIOS</div>
                 </div>
                 <button class="menu-toggle" aria-label="Menu">☰</button>
                 <div class="nav-links">
-                    <a href="#portfolio" class="nav-link">Portfolio</a>
+                    <a href="#portfolio" class="nav-link">+Recentes</a>
                     <a href="#about" class="nav-link">About</a>
                     <a href="#services" class="nav-link">Services</a>
+                    <a href="/merchandising" class="nav-link">Merchandising / Loja</a>
                     <a href="#contact" class="btn">Contact</a>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Designing the extraordinary</h1>
-        <p>Graphic design, aerial photography, and video editing services that elevate your brand</p>
-        <a href="#portfolio" class="btn">View my work</a>
-    </section>
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Criando o extraordinário</h1>
+            <p>Design gráfico, fotografia aérea e edição de vídeo para elevar a sua marca</p>
+            <a href="#portfolio" class="btn">Veja o meu Trabalho</a>
+        </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio-section">
-        <div class="container">
-            <h2 class="section-title">My Portfolio</h2>
-            <div class="portfolio-images">
-                <div class="portfolio-item">
-                    <div class="item-title">Design Work 1</div>
-                    <div class="image-placeholder">
-                        <img src="/api/placeholder/400/450" alt="Design Work 1" loading="lazy">
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="portfolio-section">
+            <div class="container">
+                <h2 class="section-title">Meu Portfolio</h2>
+                <div class="portfolio-images">
+                    <div class="portfolio-item">
+                        <div class="item-title">Art HB</div>
+                        <div class="image-placeholder">
+                            <img src="/api/placeholder/400/450" alt="Design Work 1" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="item-title">Art Mayra</div>
+                        <div class="image-placeholder">
+                            <img src="/api/placeholder/400/450" alt="Design Work 2" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="item-title">CAN3</div>
+                        <div class="image-placeholder">
+                            <img src="/api/placeholder/400/450" alt="Design Work 3" loading="lazy">
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item">
-                    <div class="item-title">Design Work 2</div>
-                    <div class="image-placeholder">
-                        <img src="/api/placeholder/400/450" alt="Design Work 2" loading="lazy">
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="item-title">Design Work 3</div>
-                    <div class="image-placeholder">
-                        <img src="/api/placeholder/400/450" alt="Design Work 3" loading="lazy">
-                    </div>
+                <div style="text-align: center">
+                    <a href="https://www.behance.net/herminimiranda" class="btn" target="_blank" rel="noopener">Veja mais no meu Behance</a>
                 </div>
             </div>
-            <div style="text-align: center">
-                <a href="https://www.behance.net/herminimiranda" class="btn" target="_blank" rel="noopener">See more on Behance</a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Aerial Photography Section -->
-    <section class="photo-section">
-        <div class="container">
-            <h2 class="section-title">Aerial Photography</h2>
-            <div class="photo-grid">
-                <div class="photo-item">
-                    <div class="item-title">Aerial 1</div>
-                    <div class="image-placeholder">
-                        <img src="/api/placeholder/300/200" alt="Aerial Photo 1" loading="lazy">
+        <!-- Aerial Photography Section -->
+        <section class="photo-section">
+            <div class="container">
+                <h2 class="section-title">Aerial Photography</h2>
+                <div class="photo-grid">
+                    <div class="photo-item">
+                        <div class="item-title">Palmarejo</div>
+                        <div class="image-placeholder">
+                            <img src="/api/placeholder/300/200" alt="Aerial Photo 1" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="photo-item">
+                        <div class="item-title">Cidade Velha</div>
+                        <div class="image-placeholder">
+                            <img src="/api/placeholder/300/200" alt="Aerial Photo 2" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="photo-item">
+                        <div class="item-title">Tarrafal</div>
+                        <div class="image-placeholder">
+                            <img src="/api/placeholder/300/200" alt="Aerial Photo 3" loading="lazy">
+                        </div>
                     </div>
                 </div>
-                <div class="photo-item">
-                    <div class="item-title">Aerial 2</div>
-                    <div class="image-placeholder">
-                        <img src="/api/placeholder/300/200" alt="Aerial Photo 2" loading="lazy">
-                    </div>
-                </div>
-                <div class="photo-item">
-                    <div class="item-title">Aerial 3</div>
-                    <div class="image-placeholder">
-                        <img src="/api/placeholder/300/200" alt="Aerial Photo 3" loading="lazy">
-                    </div>
+                <div style="text-align: center">
+                    <a href="https://www.youtube.com/@hermytutorials8481/videos" class="btn" target="_blank" rel="noopener">Assista meus videos</a>
                 </div>
             </div>
-            <div style="text-align: center">
-                <a href="https://www.youtube.com/@hermytutorials8481/videos" class="btn" target="_blank" rel="noopener">Watch my videos</a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-image">
-                    <div class="image-placeholder">
-                        <img src="/api/placeholder/300/300" alt="Profile Photo" loading="lazy">
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-image">
+                        <div class="image-placeholder">
+                            <img src="/api/placeholder/300/300" alt="Profile Photo" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="about-text">
+                        <h2>Sobre mim</h2>
+                        <p>Sou um designer gráfico com uma paixão por criar visuais impactantes e funcionais. Tenho uma vasta experiência na área, com trabalhos realizados tanto como freelancer quanto em empresas, sempre buscando soluções criativas para os desafios dos meus clientes. Além do design gráfico, sou um entusiasta da tecnologia e trabalho com drones profissionais para capturar imagens e vídeos aéreos.</p>
                     </div>
                 </div>
-                <div class="about-text">
-                    <h2>About Me</h2>
-                    <p>Sou um designer gráfico com uma paixão por criar visuais impactantes e funcionais. Tenho uma vasta experiência na área, com trabalhos realizados tanto como freelancer quanto em empresas, sempre buscando soluções criativas para os desafios dos meus clientes. Além do design gráfico, sou um entusiasta da tecnologia e trabalho com drones profissionais para capturar imagens e vídeos aéreos.</p>
-                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services-section">
-        <div class="container">
-            <h2 class="section-title">Nossos Serviços</h2>
-            <div class="services-container">
-                <div class="service-item">
-                    <div class="service-icon">✏️</div>
-                    <h3 class="service-title">Design Gráfico & Branding</h3>
-                    <p class="service-description">Desenvolvemos identidades visuais, logotipos, materiais publicitários e layouts personalizados para fortalecer a imagem da sua marca.</p>
-                </div>
-                <div class="service-item">
-                    <div class="service-icon">🎬</div>
-                    <h3 class="service-title">Produção & Edição de Vídeos</h3>
-                    <p class="service-description">Criamos vídeos impactantes, desde filmagens institucionais, vídeos imobiliários e conteúdos para redes sociais, com edição profissional.</p>
-                </div>
-                <div class="service-item">
-                    <div class="service-icon">📸</div>
-                    <h3 class="service-title">Fotografia & Imagens Aéreas</h3>
-                    <p class="service-description">Capturamos imagens profissionais e vídeos aéreos com drone para destacar propriedades, eventos e negócios de uma perspectiva única.</p>
+        <!-- Services Section -->
+        <section id="services" class="services-section">
+            <div class="container">
+                <h2 class="section-title">Nossos Serviços</h2>
+                <div class="services-container">
+                    <div class="service-item">
+                        <div class="service-icon">✏️</div>
+                        <h3 class="service-title">Design Gráfico & Branding</h3>
+                        <p class="service-description">Desenvolvemos identidades visuais, logotipos, materiais publicitários e layouts personalizados para fortalecer a imagem da sua marca.</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">🎬</div>
+                        <h3 class="service-title">Produção & Edição de Vídeos</h3>
+                        <p class="service-description">Criamos vídeos impactantes, desde filmagens institucionais, vídeos imobiliários e conteúdos para redes sociais, com edição profissional.</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">📸</div>
+                        <h3 class="service-title">Fotografia & Imagens Aéreas</h3>
+                        <p class="service-description">Capturamos imagens profissionais e vídeos aéreos com drone para destacar propriedades, eventos e negócios de uma perspectiva única.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FAQ Section -->
-    <section id="faq" class="faq-section">
-        <div class="container">
-            <h2 class="section-title">FAQ</h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">1. Quais serviços vocês oferecem?</div>
-                    <div class="faq-answer">
-                        Oferecemos Design gráfico, edição de vídeos, fotografia profissional e captura de imagens aéreas com drone. O nosso principal foco é ajudar marcas a se destacarem com visuais criativos e impactantes.
+        <!-- FAQ Section -->
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <h2 class="section-title">FAQ</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">1. Quais serviços vocês oferecem?</div>
+                        <div class="faq-answer">
+                            Oferecemos Design gráfico, edição de vídeos, fotografia profissional e captura de imagens aéreas com drone. O nosso principal foco é ajudar marcas a se destacarem com visuais criativos e impactantes.
+                        </div>
                     </div>
-                </div>
-                
-                <div class="faq-item collapsed">
-                    <div class="faq-question">2. Como funciona o processo de trabalho?</div>
-                    <div class="faq-answer">
-                        Tudo começa com um briefing para entender suas necessidades. Depois, desenvolvo um conceito, faço ajustes conforme necessário e entrego o material final dentro do prazo combinado.
+                    
+                    <div class="faq-item collapsed">
+                        <div class="faq-question">2. Como funciona o processo de trabalho?</div>
+                        <div class="faq-answer">
+                            Tudo começa com um briefing para entender suas necessidades. Depois, desenvolvo um conceito, faço ajustes conforme necessário e entrego o material final dentro do prazo combinado.
+                        </div>
                     </div>
-                </div>
-                
-                <div class="faq-item collapsed">
-                    <div class="faq-question">3. Como posso solicitar um orçamento?</div>
-                    <div class="faq-answer">
-                        Basta entrar em contato pelo WhatsApp ou e-mail, descrevendo o que precisa. Em pouco tempo, envio uma proposta personalizada para o seu projeto.
+                    
+                    <div class="faq-item collapsed">
+                        <div class="faq-question">3. Como posso solicitar um orçamento?</div>
+                        <div class="faq-answer">
+                            Basta entrar em contato pelo WhatsApp ou e-mail, descrevendo o que precisa. Em pouco tempo, envio uma proposta personalizada para o seu projeto.
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="contact-info">
-                <h2>Get in Touch</h2>
-                
-                <div class="contact-methods">
-                    <div class="contact-item">
-                        <div class="contact-icon">📱</div>
-                        <span>Tel: 9893666</span>
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="contact-info">
+                    <h2>CONTACTE-NOS</h2>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <span>Tel: 9893666</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <span>Email: herminiltonmiranda2001@gmail.com</span>
+                        </div>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">✉️</div>
-                        <span>Email: herminiltonmiranda2001@gmail.com</span>
+                    
+                    <div class="contact-buttons">
+                        <a href="https://wa.me/9893666" class="btn btn-whatsapp" target="_blank" rel="noopener">
+                            WhatsApp Me
+                        </a>
+                        <a href="mailto:herminiltonmiranda2001@gmail.com" class="btn">
+                            Send Email
+                        </a>
                     </div>
-                </div>
-                
-                <div class="contact-buttons">
-                    <a href="https://wa.me/9893666" class="btn btn-whatsapp" target="_blank" rel="noopener">
-                        WhatsApp Me
-                    </a>
-                    <a href="mailto:herminiltonmiranda2001@gmail.com" class="btn">
-                        Send Email
-                    </a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Coming Soon Page (hidden by default) -->
+        <section id="merchandising" class="coming-soon" style="display: none;">
+            <h1>Coming Soon</h1>
+            <p>Representa ou fica quieto.</p>
+            <a href="#" class="btn" onclick="history.back(); return false;">Go Back</a>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -932,7 +1010,7 @@
                 {element: document.querySelector('.photo-item:nth-child(2) img'), paths: ['aerial2.webp', './aerial2.webp', '../aerial2.webp']},
                 {element: document.querySelector('.photo-item:nth-child(3) img'), paths: ['aerial3.webp', './aerial3.webp', '../aerial3.webp']},
                 {element: document.querySelector('.about-image img'), paths: ['profile.jpg', './profile.jpg', '../profile.jpg']},
-                {element: document.querySelector('.logo img'), paths: ['logo.png', './logo.png', '../logo.png']}
+                {element: document.querySelector('.logo img'), paths: ['logo icarus.webp', './logo icarus.webp', '../logo icarus.webp']}
             ];
             
             imagesToTry.forEach(item => {
@@ -967,51 +1045,51 @@
                 }
             });
 
-            // Improved smooth scrolling for all anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        // Scroll with offset for fixed header
-                        const headerHeight = document.querySelector('.header').offsetHeight;
-                        const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+            // Handle merchandising page
+            if (window.location.pathname === '/merchandising') {
+                document.getElementById('main-content').style.display = 'none';
+                document.getElementById('merchandising').style.display = 'flex';
+                document.querySelector('footer').style.display = 'block';
+            } else {
+                // Improved smooth scrolling for all anchor links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function(e) {
+                        e.preventDefault();
                         
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
+                        const targetId = this.getAttribute('href');
+                        if (targetId === '#') return;
+                        
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            // Scroll with offset for fixed header
+                            const headerHeight = document.querySelector('.header').offsetHeight;
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+                            
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
                 });
-            });
-            
-            // Add intersection observer for animations
-            const sections = document.querySelectorAll('section');
-            const observerOptions = {
-                threshold: 0.1
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            sections.forEach(section => {
-                section.style.opacity = 0;
-                section.style.transform = 'translateY(20px)';
-                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(section);
-            });
-        });
-    </script>
-</body>
-</html>
+                
+                // Add intersection observer for animations
+                const sections = document.querySelectorAll('section');
+                const observerOptions = {
+                    threshold: 0.1
+                };
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = 1;
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, observerOptions);
+                
+                sections.forEach(section => {
+                    section.style.opacity = 0;
+                    section.style.transform = 'translateY(20px)';
+                    section.style.transition

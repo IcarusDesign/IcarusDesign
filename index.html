@@ -33,8 +33,10 @@
     /* Header */
     .header {
         background-color: rgba(0, 0, 0, 0.8);
-        position: sticky;
+        position: fixed; /* Changed from sticky to fixed for better consistency */
         top: 0;
+        left: 0;
+        width: 100%;
         z-index: 100;
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
@@ -44,17 +46,19 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 18px 0;
+        padding: 12px 0; /* Reduced padding */
     }
     
     .logo {
-        height: 44px;
+        height: 30px; /* Reduced logo height */
         width: auto;
+        margin-right: auto; /* Push logo to left */
     }
 
     .nav-links {
         display: flex;
         gap: 20px;
+        align-items: center;
     }
 
     .nav-link {
@@ -67,6 +71,16 @@
     .nav-link:hover {
         color: #0071e3;
     }
+
+    /* Mobile menu toggle */
+    .menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: #f5f5f7;
+        font-size: 24px;
+        cursor: pointer;
+    }
     
     /* Hero Section */
     .hero {
@@ -76,7 +90,7 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-        padding: 60px 20px;
+        padding: 120px 20px 60px; /* Increased top padding to account for fixed header */
         background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 100%);
         background-size: cover;
         background-position: center;
@@ -131,6 +145,7 @@
     /* Portfolio Section */
     .portfolio-section {
         padding: 100px 0;
+        scroll-margin-top: 70px; /* Added scroll margin to prevent content hiding behind fixed header */
     }
     
     .section-title {
@@ -193,6 +208,7 @@
     .photo-section {
         padding: 100px 0;
         background-color: #111;
+        scroll-margin-top: 70px; /* Added scroll margin */
     }
     
     .photo-grid {
@@ -247,6 +263,7 @@
     .about-section {
         padding: 100px 0;
         background: linear-gradient(135deg, #111111 0%, #222222 100%);
+        scroll-margin-top: 70px; /* Added scroll margin */
     }
     
     .about-content {
@@ -296,10 +313,11 @@
         line-height: 1.5;
     }
     
-    /* Services Section (New) */
+    /* Services Section */
     .services-section {
         padding: 100px 0;
         background: linear-gradient(135deg, #000000 0%, #111111 100%);
+        scroll-margin-top: 70px; /* Added scroll margin */
     }
 
     .services-container {
@@ -335,10 +353,11 @@
         line-height: 1.6;
     }
 
-    /* FAQ Section (New) */
+    /* FAQ Section */
     .faq-section {
         padding: 100px 0;
         background-color: #1a1a1a;
+        scroll-margin-top: 70px; /* Added scroll margin */
     }
 
     .faq-container {
@@ -389,6 +408,7 @@
         padding: 100px 0;
         background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
         text-align: center;
+        scroll-margin-top: 70px; /* Added scroll margin */
     }
     
     .contact-info {
@@ -473,6 +493,27 @@
     }
     
     @media (max-width: 768px) {
+        .menu-toggle {
+            display: block;
+        }
+        
+        .nav-links {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            flex-direction: column;
+            padding: 20px;
+            transition: transform 0.3s ease;
+            transform: translateY(-150%);
+            z-index: 99;
+        }
+        
+        .nav-links.active {
+            transform: translateY(0);
+        }
+        
         .portfolio-images, .photo-grid {
             grid-template-columns: 1fr;
         }
@@ -496,8 +537,11 @@
 
     @media (max-width: 480px) {
         .header-content {
-            flex-direction: column;
-            gap: 15px;
+            padding: 12px 20px;
+        }
+        
+        .hero {
+            padding-top: 100px;
         }
         
         .hero h1 {
@@ -540,8 +584,9 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <a href="#"><img src="/api/placeholder/100/44" alt="Logo"></a>
+                    <a href="#"><img src="/api/placeholder/60/30" alt="Logo"></a>
                 </div>
+                <button class="menu-toggle">☰</button>
                 <div class="nav-links">
                     <a href="#portfolio" class="nav-link">Portfolio</a>
                     <a href="#about" class="nav-link">About</a>
@@ -636,7 +681,7 @@
         </div>
     </section>
 
-    <!-- Services Section (New) -->
+    <!-- Services Section -->
     <section id="services" class="services-section">
         <div class="container">
             <h2 class="section-title">Nossos Serviços</h2>
@@ -660,7 +705,7 @@
         </div>
     </section>
 
-    <!-- FAQ Section (New) -->
+    <!-- FAQ Section -->
     <section id="faq" class="faq-section">
         <div class="container">
             <h2 class="section-title">FAQ</h2>
@@ -726,9 +771,26 @@
     </footer>
 
     <script>
-        // Image loading script
         document.addEventListener('DOMContentLoaded', function() {
-            // Try to load images with different paths
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+            }
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = document.querySelectorAll('.nav-links .nav-link, .nav-links .btn');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                });
+            });
+            
+            // Image loading script
             const imagesToTry = [
                 {element: document.querySelector('.portfolio-item:nth-child(1) img'), paths: ['image1.webp', './image1.webp', '../image1.webp']},
                 {element: document.querySelector('.portfolio-item:nth-child(2) img'), paths: ['image2.webp', './image2.webp', '../image2.webp']},
@@ -767,7 +829,7 @@
                 });
             });
 
-            // Add smooth scrolling for all anchor links
+            // Improved smooth scrolling for all anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -777,8 +839,13 @@
                     
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
+                        // Scroll with offset for fixed header
+                        const headerHeight = document.querySelector('.header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+                        
                         window.scrollTo({
-                            top: targetElement.offsetTop - 80, // Account for header height
+                            top: offsetPosition,
                             behavior: 'smooth'
                         });
                     }

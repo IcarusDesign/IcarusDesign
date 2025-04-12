@@ -84,12 +84,6 @@
         position: relative;
     }
     
-    .hero-logo {
-        width: 120px;
-        height: auto;
-        margin-bottom: 30px;
-    }
-    
     .hero h1 {
         font-size: 56px;
         line-height: 1.1;
@@ -560,7 +554,6 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <img class="hero-logo" src="/api/placeholder/120/120" alt="Logo">
         <h1>Designing the extraordinary</h1>
         <p>Graphic design, aerial photography, and video editing services that elevate your brand</p>
         <a href="#portfolio" class="btn">View my work</a>
@@ -744,8 +737,7 @@
                 {element: document.querySelector('.photo-item:nth-child(2) img'), paths: ['aerial2.webp', './aerial2.webp', '../aerial2.webp']},
                 {element: document.querySelector('.photo-item:nth-child(3) img'), paths: ['aerial3.webp', './aerial3.webp', '../aerial3.webp']},
                 {element: document.querySelector('.about-image img'), paths: ['profile.jpg', './profile.jpg', '../profile.jpg']},
-                {element: document.querySelector('.logo img'), paths: ['logo.png', './logo.png', '../logo.png']},
-                {element: document.querySelector('.hero-logo'), paths: ['logo.png', './logo.png', '../logo.png']}
+                {element: document.querySelector('.logo img'), paths: ['logo.png', './logo.png', '../logo.png']}
             ];
             
             imagesToTry.forEach(item => {

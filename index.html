@@ -495,8 +495,8 @@
     }
     
     /* Coming Soon Page */
-    .coming-soon {
-        display: flex;
+    .merchandising-page {
+        display: none;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -506,14 +506,18 @@
         background-color: var(--apple-white);
     }
     
-    .coming-soon h1 {
+    .merchandising-page.active {
+        display: flex;
+    }
+    
+    .merchandising-page h1 {
         font-size: 48px;
         margin-bottom: 20px;
         color: var(--apple-dark-gray);
         font-weight: bold;
     }
     
-    .coming-soon p {
+    .merchandising-page p {
         font-size: 24px;
         font-style: italic;
         color: var(--apple-text-gray);
@@ -627,6 +631,14 @@
             max-width: 300px;
             margin: 0 auto;
         }
+
+        .merchandising-page h1 {
+            font-size: 36px;
+        }
+        
+        .merchandising-page p {
+            font-size: 20px;
+        }
     }
 
     @media (max-width: 480px) {
@@ -664,12 +676,12 @@
             font-size: 0.9rem;
         }
         
-        .coming-soon h1 {
-            font-size: 2rem;
+        .merchandising-page h1 {
+            font-size: 28px;
         }
         
-        .coming-soon p {
-            font-size: 1.1rem;
+        .merchandising-page p {
+            font-size: 16px;
         }
     }
     </style>
@@ -690,7 +702,7 @@
                     <a href="#portfolio" class="nav-link">+Recentes</a>
                     <a href="#about" class="nav-link">About</a>
                     <a href="#services" class="nav-link">Services</a>
-                    <a href="#merchandising" class="nav-link">Merchandising / Loja</a>
+                    <a href="#merchandising" class="nav-link merchandising-link">Merchandising / Loja</a>
                     <a href="#contact" class="btn">Contact</a>
                 </div>
             </div>
@@ -698,7 +710,7 @@
     </header>
 
     <!-- Main Content -->
-    <main id="main-content">
+    <main id="main-content" class="main-content">
         <!-- Hero Section -->
         <section class="hero">
             <h1>Criando o extraordinário</h1>
@@ -850,14 +862,16 @@
                 </div>
             </div>
         </section>
+    </main>
 
-        <!-- Coming Soon Page (hidden by default) -->
-        <section id="merchandising" class="coming-soon" style="display: none;">
+    <!-- Merchandising Page -->
+    <section id="merchandising" class="merchandising-page">
+        <div class="container">
             <h1>COMING SOON</h1>
             <p>Representa ou fica quieto.</p>
-            <a href="#" class="btn" onclick="history.back(); return false;">Voltar</a>
-        </section>
-    </main>
+            <a href="#" class="btn back-btn">Voltar</a>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -868,11 +882,55 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Mobile menu toggle
+        // Elementos importantes
+        const mainContent = document.querySelector('.main-content');
+        const merchandisingPage = document.getElementById('merchandising');
+        const merchandisingLink = document.querySelector('.merchandising-link');
+        const backBtn = document.querySelector('.back-btn');
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
         const body = document.body;
 
+        // Função para mostrar a página de merchandising
+        function showMerchandising() {
+            mainContent.style.display = 'none';
+            merchandisingPage.classList.add('active');
+            body.classList.add('no-scroll');
+            window.scrollTo(0, 0);
+        }
+
+        // Função para voltar ao conteúdo principal
+        function hideMerchandising() {
+            mainContent.style.display = 'block';
+            merchandisingPage.classList.remove('active');
+            body.classList.remove('no-scroll');
+            window.location.hash = '';
+        }
+
+        // Evento para o link de merchandising
+        merchandisingLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showMerchandising();
+            
+            // Fecha o menu mobile se estiver aberto
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Evento para o botão voltar
+        backBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            hideMerchandising();
+        });
+
+        // Verifica o hash na URL ao carregar a página
+        if (window.location.hash === '#merchandising') {
+            showMerchandising();
+        }
+
+        // Mobile menu toggle
         if (menuToggle) {
             menuToggle.addEventListener('click', function() {
                 navLinks.classList.toggle('active');
@@ -881,29 +939,14 @@
             });
         }
 
-        // Close menu when clicking links
-        document.querySelectorAll('.nav-link').forEach(link => {
+        // Close menu when clicking links (exceto merchandising)
+        document.querySelectorAll('.nav-link:not(.merchandising-link)').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
                 body.classList.remove('no-scroll');
                 if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
-                
-                // Special handling for merchandising link
-                if (link.getAttribute('href') === '#merchandising') {
-                    document.getElementById('main-content').style.display = 'none';
-                    document.getElementById('merchandising').style.display = 'flex';
-                } else {
-                    document.getElementById('main-content').style.display = 'block';
-                    document.getElementById('merchandising').style.display = 'none';
-                }
             });
         });
-
-        // Handle initial page load with hash
-        if (window.location.hash === '#merchandising') {
-            document.getElementById('main-content').style.display = 'none';
-            document.getElementById('merchandising').style.display = 'flex';
-        }
 
         // FAQ functionality
         const faqItems = document.querySelectorAll('.faq-item');
@@ -913,7 +956,6 @@
                 item.classList.toggle('collapsed');
             });
             
-            // Initialize all FAQs as collapsed except the first one
             if (!question.textContent.includes('1.')) {
                 item.classList.add('collapsed');
             }
@@ -922,10 +964,11 @@
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                if (this.getAttribute('href') === '#') return;
-                
-                // Skip smooth scroll for merchandising link
-                if (this.getAttribute('href') === '#merchandising') return;
+                if (this.getAttribute('href') === '#' || 
+                    this.classList.contains('merchandising-link') || 
+                    this.classList.contains('back-btn')) {
+                    return;
+                }
                 
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
@@ -940,17 +983,17 @@
                 }
             });
         });
-    });
 
-    // Preload images
-    window.addEventListener('load', function() {
-        const images = document.querySelectorAll('img[loading="lazy"]');
-        images.forEach(img => {
-            const src = img.getAttribute('src');
-            if (src) {
-                const imgObj = new Image();
-                imgObj.src = src;
-            }
+        // Preload images
+        window.addEventListener('load', function() {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            images.forEach(img => {
+                const src = img.getAttribute('src');
+                if (src) {
+                    const imgObj = new Image();
+                    imgObj.src = src;
+                }
+            });
         });
     });
     </script>

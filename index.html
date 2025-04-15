@@ -510,6 +510,7 @@
         font-size: 48px;
         margin-bottom: 20px;
         color: var(--apple-dark-gray);
+        font-weight: bold;
     }
     
     .coming-soon p {
@@ -712,15 +713,15 @@
                 <div class="portfolio-images">
                     <div class="portfolio-item">
                         <div class="item-title">Art HB</div>
-                        <img src="aerial1.webp" alt="Design Work 1" loading="lazy">
+                        <img src="image1.webp" alt="Design Work 1" loading="lazy">
                     </div>
                     <div class="portfolio-item">
                         <div class="item-title">Art Mayra</div>
-                        <img src="aerial2.webp" alt="Design Work 2" loading="lazy">
+                        <img src="image2.webp" alt="Design Work 2" loading="lazy">
                     </div>
                     <div class="portfolio-item">
                         <div class="item-title">CAN3</div>
-                        <img src="aerial3.webp" alt="Design Work 3" loading="lazy">
+                        <img src="image3.webp" alt="Design Work 3" loading="lazy">
                     </div>
                 </div>
                 <div style="text-align: center">
@@ -736,15 +737,15 @@
                 <div class="photo-grid">
                     <div class="photo-item">
                         <div class="item-title">Palmarejo</div>
-                        <img src="image1.webp" alt="Aerial Photo 1" loading="lazy">
+                        <img src="aerial1.webp" alt="Aerial Photo 1" loading="lazy">
                     </div>
                     <div class="photo-item">
                         <div class="item-title">Cidade Velha</div>
-                        <img src="image2.webp" alt="Aerial Photo 2" loading="lazy">
+                        <img src="aerial2.webp" alt="Aerial Photo 2" loading="lazy">
                     </div>
                     <div class="photo-item">
                         <div class="item-title">Tarrafal</div>
-                        <img src="image3.webp" alt="Aerial Photo 3" loading="lazy">
+                        <img src="aerial3.webp" alt="Aerial Photo 3" loading="lazy">
                     </div>
                 </div>
                 <div style="text-align: center">
@@ -852,9 +853,9 @@
 
         <!-- Coming Soon Page (hidden by default) -->
         <section id="merchandising" class="coming-soon" style="display: none;">
-            <h1>Coming Soon</h1>
+            <h1>COMING SOON</h1>
             <p>Representa ou fica quieto.</p>
-            <a href="#" class="btn" onclick="history.back(); return false;">Go Back</a>
+            <a href="#" class="btn" onclick="history.back(); return false;">Voltar</a>
         </section>
     </main>
 
@@ -886,10 +887,19 @@
                 navLinks.classList.remove('active');
                 body.classList.remove('no-scroll');
                 if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+                
+                // Special handling for merchandising link
+                if (link.getAttribute('href') === '#merchandising') {
+                    document.getElementById('main-content').style.display = 'none';
+                    document.getElementById('merchandising').style.display = 'flex';
+                } else {
+                    document.getElementById('main-content').style.display = 'block';
+                    document.getElementById('merchandising').style.display = 'none';
+                }
             });
         });
 
-        // Handle merchandising page
+        // Handle initial page load with hash
         if (window.location.hash === '#merchandising') {
             document.getElementById('main-content').style.display = 'none';
             document.getElementById('merchandising').style.display = 'flex';
@@ -913,6 +923,9 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 if (this.getAttribute('href') === '#') return;
+                
+                // Skip smooth scroll for merchandising link
+                if (this.getAttribute('href') === '#merchandising') return;
                 
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));

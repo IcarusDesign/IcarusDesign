@@ -1205,5 +1205,49 @@
         });
     });
     </script>
+    <script>
+// Selecionar elementos
+const lojaPage = document.querySelector('.merchandising-page');
+const allMainSections = document.querySelectorAll('body > *:not(.header):not(.merchandising-page)');
+const lojaLink = document.querySelector('a[href="#merch"]');
+
+// Função para esconder conteúdo principal
+function hideMainContent() {
+    allMainSections.forEach(sec => sec.style.display = 'none');
+}
+
+// Função para mostrar conteúdo principal
+function showMainContent() {
+    allMainSections.forEach(sec => sec.style.display = '');
+    lojaPage.classList.remove('active');
+}
+
+// Quando clicar em "Merchandising / Loja"
+if (lojaLink) {
+    lojaLink.addEventListener('click', () => {
+        lojaPage.classList.add('active');
+        hideMainContent();
+        window.scrollTo(0, 0);
+    });
+}
+
+// Quando clicar em QUALQUER link do menu (exceto "Loja")
+document.querySelectorAll('.nav-link').forEach(link => {
+    if (link !== lojaLink) {
+        link.addEventListener('click', () => {
+            showMainContent();
+        });
+    }
+});
+
+// Botão "Voltar" da loja (se existir)
+const backBtn = document.querySelector('#back-from-store');
+if (backBtn) {
+    backBtn.addEventListener('click', () => {
+        showMainContent();
+        window.location.hash = ''; // limpa o #merch
+    });
+}
+</script>
 </body>
 </html>

@@ -1083,7 +1083,7 @@
         function showMerchandising() {
             mainContent.style.display = 'none';
             merchandisingPage.classList.add('active');
-            body.classList.add('no-scroll');
+            body.classList.remove('no-scroll');
             window.scrollTo(0, 0);
         }
 
@@ -1122,7 +1122,7 @@
         if (menuToggle) {
             menuToggle.addEventListener('click', function() {
                 navLinks.classList.toggle('active');
-                body.classList.toggle('no-scroll');
+                body.classList.toggle;
                 this.setAttribute('aria-expanded', navLinks.classList.contains('active'));
             });
         }

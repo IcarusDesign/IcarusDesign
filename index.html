@@ -127,35 +127,31 @@
         z-index: 1000;
     }
     
-    /* Hero Section - Ajustes de Altura, Cor do Texto e Espaçamento */
+    /* Hero Section */
     .hero {
-        /* NOVO: min-height e padding reduzidos para diminuir o tamanho da seção */
-        min-height: 60vh; /* REDUZIDO DE 100vh */
+        /* Altura reduzida para 60vh no último ajuste */
+        min-height: 60vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
-        padding: 80px 20px 60px; /* Padding ajustado */
-        /* NOVO: Fundo sutil para substituir o gradiente anterior */
-        background: radial-gradient(circle at 50% 10%, var(--apple-light-gray-2) 0%, var(--apple-light-gray) 70%);
+        padding: 120px 20px 60px;
+        background: linear-gradient(to bottom, rgba(245,245,247,0.9) 0%, rgba(245,245,247,0.7) 100%);
         position: relative;
     }
     
     .hero h1 {
         font-size: clamp(2.5rem, 5vw, 4rem);
         line-height: 1.2;
-        /* NOVO: Espaçamento reduzido */
+        /* Espaçamento ajustado para menor harmonia */
         margin-bottom: 0.5rem; 
-        
-        /* NOVO: Cor sólida para garantir 100% de opacidade e alto contraste */
+        /* Cor sólida para 100% de opacidade */
         color: var(--apple-dark-gray); 
         background: none;
         -webkit-background-clip: initial;
         -webkit-text-fill-color: initial;
         background-clip: initial;
-        /* FIM NOVO: Cor e Opacidade */
-        
         font-weight: 700;
         max-width: 900px;
         padding: 0 20px;
@@ -164,10 +160,9 @@
     .hero p {
         font-size: clamp(1.2rem, 2vw, 1.75rem);
         max-width: 700px;
-        /* NOVO: Line-height e Espaçamento reduzidos */
-        line-height: 1.4; /* Reduz o espaçamento entre as linhas */
-        margin-bottom: 1.5rem; /* Reduz o espaçamento entre o parágrafo e o botão */
-        
+        /* Line-height ajustado */
+        line-height: 1.4; 
+        margin-bottom: 1.5rem;
         color: var(--apple-dark-gray);
         padding: 0 20px;
     }
@@ -192,7 +187,7 @@
         background-color: var(--apple-blue-hover);
         transform: scale(1.02);
     }
-    /* NOVO: Efeito de pressionar */
+    
     .btn:active {
         transform: scale(0.98);
     }
@@ -474,32 +469,7 @@
         color: var(--apple-dark-gray);
     }
 
-    .contact-methods {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 24px;
-        margin-bottom: 30px;
-    }
-    
-    .contact-item {
-        font-size: 20px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        color: var(--apple-dark-gray);
-    }
-
-    .contact-icon {
-        width: 44px;
-        height: 44px;
-        background-color: rgba(0, 0, 0, 0.05);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px;
-    }
+    /* REMOVIDO: contact-methods, contact-item e contact-icon */
 
     .contact-buttons {
         display: flex;
@@ -676,12 +646,30 @@
     }
     
     /* Media Queries */
+    @media (max-width: 1024px) {
+        .hero h1 {
+            font-size: 52px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+        }
+        
+        .section-title {
+            font-size: 40px;
+        }
+        
+        .portfolio-images {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        }
+    }
+    
     @media (max-width: 768px) {
         .menu-toggle {
             display: block;
         }
         
-        /* NOVO: Esconde o botão de contato padrão no cabeçalho mobile */
+        /* Esconde o botão de contato padrão no cabeçalho mobile */
         .header-content .btn {
             display: none; 
         }
@@ -701,8 +689,7 @@
             transition: transform 0.3s ease-out;
             z-index: 999;
             gap: 20px;
-            
-            /* NOVO: Garante altura total do viewport para full-page */
+            /* Garante altura total do viewport para full-page */
             height: 100vh;
         }
         
@@ -716,11 +703,11 @@
             width: 100%;
             text-align: center;
         }
-
-        /* NOVO: Estilo para o botão de contato dentro do menu mobile */
+        
+        /* Estilo para o botão de contato dentro do menu mobile */
         .nav-links .btn {
-            display: block; /* Garante que o botão seja visível no menu mobile */
-            width: 80%; /* Largura maior */
+            display: block; 
+            width: 80%; 
             max-width: 300px;
             margin-top: 20px;
             font-size: 1.5rem; 
@@ -729,7 +716,7 @@
 
         .hero {
             padding-top: 80px;
-            min-height: auto; /* Permite que o conteúdo defina a altura mínima em mobile */
+            min-height: auto; 
         }
 
         .portfolio-images {
@@ -758,11 +745,9 @@
         .contact-info {
             padding: 30px;
         }
-
-        .contact-item {
-            font-size: 18px;
-        }
         
+        /* REMOVIDO: contact-item media query */
+
         .contact-buttons {
             flex-direction: column;
         }
@@ -968,17 +953,6 @@
                 <div class="contact-info">
                     <h2>CONTATE-NOS</h2>
                     
-                    <div class="contact-methods">
-                        <div class="contact-item">
-                            <div class="contact-icon"></div>
-                            <span>Tel: 9893666</span>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon"></div>
-                            <span>Email: herminiltonmiranda2001@gmail.com</span>
-                        </div>
-                    </div>
-                    
                     <div class="contact-buttons">
                         <a href="https://wa.me/2389893666" class="btn btn-whatsapp" target="_blank" rel="noopener">
                             WhatsApp Me
@@ -1123,13 +1097,12 @@
         if (menuToggle) {
             menuToggle.addEventListener('click', function() {
                 navLinks.classList.toggle('active');
-                // FIX: Garante que o scroll seja bloqueado quando o menu está aberto
                 body.classList.toggle('no-scroll', navLinks.classList.contains('active'));
                 this.setAttribute('aria-expanded', navLinks.classList.contains('active'));
             });
         }
 
-        // Close menu when clicking links (including merchandising, which is handled separately)
+        // Close menu when clicking links (exceto merchandising)
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 // Fecha o menu
@@ -1213,5 +1186,35 @@
         });
     });
     </script>
+    <script>
+// Selecionar elementos
+const lojaPage = document.querySelector('.merchandising-page');
+const allMainSections = document.querySelectorAll('body > *:not(.header):not(.merchandising-page)');
+const lojaLink = document.querySelector('.merchandising-link'); // Seletor ajustado para o link real
+
+// Função para esconder conteúdo principal
+function hideMainContent() {
+    // Esconde main, portfolio, photo, about, services, faq, contact, footer
+    allMainSections.forEach(sec => sec.style.display = 'none'); 
+}
+
+// Função para mostrar conteúdo principal
+function showMainContent() {
+    allMainSections.forEach(sec => sec.style.display = '');
+    lojaPage.classList.remove('active');
+}
+
+// Quando clicar em "Merchandising / Loja" (link já tem um event listener que chama showMerchandising, que lida com o display)
+// Deixando o código anterior (que era um rascunho redundante) limpo.
+
+// Botão "Voltar" da loja (se existir)
+const backBtn = document.querySelector('.store-back-btn'); // Seletor ajustado para o backBtn real
+if (backBtn) {
+    backBtn.addEventListener('click', () => {
+        showMainContent();
+        window.location.hash = ''; // limpa o #merch
+    });
+}
+</script>
 </body>
 </html>

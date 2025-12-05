@@ -490,7 +490,7 @@
         max-height: 300px;
     }
     
-    /* Contact Section Redesign (Melhoria 3) */
+    /* Contact Section Redesign */
     .contact-section {
         padding: 100px 0;
         background-color: var(--apple-light-gray); 
@@ -677,7 +677,7 @@
     
     .product-image {
         width: 100%;
-        height: 250px; /* Aumentei um pouco a altura para a imagem */
+        height: 250px; 
         background-color: var(--apple-light-gray);
         display: flex;
         align-items: center;
@@ -710,7 +710,7 @@
     }
     
     .product-price {
-        font-size: 22px; /* Maior destaque para o preço */
+        font-size: 22px; 
         font-weight: 600;
         color: var(--apple-dark-gray);
         margin-bottom: 16px;
@@ -774,6 +774,7 @@
             display: block;
         }
         
+        /* FIX: Esconde todos os links no header em mobile */
         .nav-links {
             position: fixed;
             top: 0;
@@ -789,17 +790,36 @@
             transition: transform 0.3s ease-out;
             z-index: 999;
             gap: 20px;
+            /* Garante que os links não apareçam na versão não expandida */
+            display: none; 
         }
-        
+
         .nav-links.active {
             transform: translateY(0);
+            display: flex; /* Mostra o menu quando ativo */
         }
         
+        /* Oculta os links do menu principal para que apenas o toggle apareça */
+        .header-content .nav-links {
+            display: none;
+        }
+
+        /* Oculta o botão Contact do header principal */
+        .header-content .btn {
+            display: none !important; 
+        }
+
         .nav-link {
             font-size: 1.5rem;
             padding: 15px 0;
             width: 100%;
             text-align: center;
+        }
+
+        /* Garante que o botão Contact seja exibido DENTRO do menu mobile */
+        .nav-links .btn {
+            display: block !important; 
+            margin-top: 20px;
         }
 
         .hero {
@@ -810,7 +830,8 @@
         .portfolio-item {
             width: 100%; 
         }
-
+        
+        /* Correção para os botões do carrossel no mobile */
         .nav-btn.prev-btn {
             left: 5px; 
         }
@@ -1248,7 +1269,7 @@
         if (menuToggle) {
             menuToggle.addEventListener('click', function() {
                 navLinks.classList.toggle('active');
-                body.classList.toggle('no-scroll');
+                body.classList.toggle('no-scroll', navLinks.classList.contains('active'));
                 this.setAttribute('aria-expanded', navLinks.classList.contains('active'));
             });
         }
@@ -1336,8 +1357,8 @@
         // --- SCRIPT PARA O CARROSSEL DO PORTFÓLIO (AUTOPLAY MAIS RÁPIDO) ---
         const portfolioTrack = document.querySelector('.portfolio-track');
         const portfolioItems = document.querySelectorAll('.portfolio-item');
-        const prevBtn = document.querySelector('.prev-btn');
-        const nextBtn = document.querySelector('.next-btn');
+        const prevBtn = document.querySelector('.nav-btn.prev-btn');
+        const nextBtn = document.querySelector('.nav-btn.next-btn');
         const wrapper = document.querySelector('.portfolio-wrapper');
         
         let currentSlide = 0;

@@ -1274,7 +1274,7 @@
             });
         });
         
-        // --- NOVO SCRIPT PARA O CARROSSEL DO PORTFÓLIO ---
+        // --- NOVO SCRIPT PARA O CARROSSEL DO PORTFÓLIO (AGORA COM AUTOPLAY) ---
         const portfolioTrack = document.querySelector('.portfolio-track');
         const portfolioItems = document.querySelectorAll('.portfolio-item');
         const prevBtn = document.querySelector('.prev-btn');
@@ -1283,55 +1283,56 @@
         
         let currentSlide = 0;
         const gap = 30; // O gap definido no CSS
+        const AUTOPLAY_INTERVAL = 4000; // Tempo em ms (4 segundos)
+        let autoSlideInterval;
         
-        // Função para atualizar os botões (desabilitar se estiver no início/fim)
-        function updateButtons() {
-            // Desabilita o botão anterior se estiver no primeiro slide
-            prevBtn.disabled = currentSlide === 0;
-            
-            // Largura visível do wrapper
-            const wrapperWidth = wrapper.clientWidth;
-            // Posição total do track
+        // 1. FUNÇÕES DE AUTOPLAY
+        function autoPlay() {
+            const itemWidth = portfolioItems[0].clientWidth;
             const trackTotalWidth = portfolioTrack.scrollWidth;
+            const wrapperWidth = wrapper.clientWidth;
+            const maxScroll = trackTotalWidth - wrapperWidth;
             
-            // O scroll atual é a distância que já foi movida
-            const currentScroll = currentSlide * (portfolioItems[0].clientWidth + gap);
-
-            // Desabilita o botão próximo se o que resta para scrollar for menor ou igual a largura do wrapper
-            const remainingScroll = trackTotalWidth - currentScroll - portfolioItems[0].clientWidth;
-
-            // Se a largura visível for maior ou igual ao track total, desabilita os dois
+            // Se todos os itens cabem na tela ou não há itens, não faz nada
             if (trackTotalWidth <= wrapperWidth) {
-                prevBtn.style.display = 'none';
-                nextBtn.style.display = 'none';
                 return;
-            } else {
-                prevBtn.style.display = 'block';
-                nextBtn.style.display = 'block';
             }
             
-            // Se a posição do próximo slide estiver muito próxima do final, desabilita o next
-            if (currentScroll + wrapperWidth >= trackTotalWidth - 10) { // -10 para margem de erro
-                 nextBtn.disabled = true;
+            // Calcula a posição do próximo slide (avançando um item)
+            let nextScrollPosition = (currentSlide + 1) * (itemWidth + gap);
+
+            if (nextScrollPosition >= maxScroll) {
+                // Se chegou ao fim ou o próximo movimento é o último, volta para o início (loop)
+                currentSlide = 0; 
             } else {
-                 nextBtn.disabled = false;
+                // Avança um slide
+                currentSlide++;
             }
+            
+            moveTrack();
         }
 
-        // Função para mover o track
+        function startAutoplay() {
+            // Limpa qualquer intervalo anterior e inicia um novo
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(autoPlay, AUTOPLAY_INTERVAL);
+        }
+
+        function stopAutoplay() {
+            clearInterval(autoSlideInterval);
+        }
+
+        // 2. FUNÇÃO DE MOVIMENTO (INALTERADA)
         function moveTrack() {
             if (portfolioItems.length === 0) return;
             
             const itemWidth = portfolioItems[0].clientWidth;
             
-            // Calcula o quanto deve se mover
             let moveDistance = currentSlide * (itemWidth + gap);
             
-            // Garante que o último item seja sempre visível ao atingir o limite
             const wrapperWidth = wrapper.clientWidth;
             const trackTotalWidth = portfolioTrack.scrollWidth;
 
-            // Se a distância calculada ultrapassar o limite, ajusta para o máximo
             const maxMove = trackTotalWidth - wrapperWidth;
             if (moveDistance > maxMove) {
                 moveDistance = maxMove;
@@ -1342,42 +1343,68 @@
             updateButtons();
         }
 
-        // Evento para o botão Próximo
-        nextBtn.addEventListener('click', () => {
-             const itemWidth = portfolioItems[0].clientWidth;
-             const trackTotalWidth = portfolioTrack.scrollWidth;
-             const wrapperWidth = wrapper.clientWidth;
-             
-             // Quantos itens cabem no wrapper
-             const itemsPerView = Math.floor(wrapperWidth / (itemWidth + gap));
+        // 3. FUNÇÃO DE BOTÕES (AGORA DESABILITADOS DURANTE AUTOPLAY)
+        function updateButtons() {
+            const wrapperWidth = wrapper.clientWidth;
+            const trackTotalWidth = portfolioTrack.scrollWidth;
+            
+            if (trackTotalWidth <= wrapperWidth) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+                return;
+            } else {
+                prevBtn.style.display = 'block';
+                nextBtn.style.display = 'block';
+            }
+            
+            prevBtn.disabled = currentSlide === 0;
 
-             if (itemsPerView > 0) {
-                 // Move pelo menos um item ou o número de itens visíveis
-                 currentSlide += 1; // Move de 1 em 1 para melhor controle no mobile
-             } else {
-                 currentSlide++;
-             }
-             
-             // Verifica se o scroll não ultrapassou o limite
-             const currentScroll = currentSlide * (itemWidth + gap);
-             const maxMove = trackTotalWidth - wrapperWidth;
+            const itemWidth = portfolioItems[0].clientWidth;
+            const currentScroll = currentSlide * (itemWidth + gap);
+            
+            // Verifica se o próximo movimento ultrapassaria o final
+            if (currentScroll + wrapperWidth >= trackTotalWidth - itemWidth) {
+                 nextBtn.disabled = true;
+            } else {
+                 nextBtn.disabled = false;
+            }
+        }
 
-             if (currentScroll > maxMove) {
-                 // Ajusta para a posição máxima onde o último item aparece
-                 currentSlide = Math.floor(maxMove / (itemWidth + gap));
-                 if (maxMove % (itemWidth + gap) > 0) {
-                     currentSlide++; 
-                 }
-             }
-
-             moveTrack();
-        });
-
-        // Evento para o botão Anterior
-        prevBtn.addEventListener('click', () => {
+        // 4. LISTENERS E INICIALIZAÇÃO
+        
+        // Pausa no Hover/Focus
+        wrapper.addEventListener('mouseenter', stopAutoplay);
+        wrapper.addEventListener('mouseleave', startAutoplay);
+        
+        // Pausa ao interagir manualmente (reinicia após 10s de inatividade)
+        prevBtn.addEventListener('click', () => { 
             if (currentSlide > 0) {
                 currentSlide--;
                 moveTrack();
+                stopAutoplay(); 
+                setTimeout(startAutoplay, 10000); 
+            }
+        });
+        
+        nextBtn.addEventListener('click', () => { 
+            const itemWidth = portfolioItems[0].clientWidth;
+            const trackTotalWidth = portfolioTrack.scrollWidth;
+            const wrapperWidth = wrapper.clientWidth;
+            const maxMove = trackTotalWidth - wrapperWidth;
+            const currentScroll = currentSlide * (itemWidth + gap);
+
+             // Apenas move se não estiver no final
+            if (currentScroll < maxMove) {
+                currentSlide++;
+                moveTrack();
+                stopAutoplay(); 
+                setTimeout(startAutoplay, 10000); 
+            } else {
+                // Se o usuário clicar em next no final, leva para o início
+                currentSlide = 0;
+                moveTrack();
+                stopAutoplay(); 
+                setTimeout(startAutoplay, 10000); 
             }
         });
         
@@ -1387,6 +1414,10 @@
         // Inicializa o carrossel no carregamento
         if (portfolioItems.length > 0) {
             updateButtons();
+            // Inicia o autoplay se houver mais conteúdo do que o visível
+            if (portfolioTrack.scrollWidth > wrapper.clientWidth) {
+                startAutoplay();
+            }
         } 
         setTimeout(moveTrack, 10); 
     });
@@ -1395,7 +1426,7 @@
 // Selecionar elementos (mantendo o script antigo por segurança)
 const lojaPage = document.querySelector('.merchandising-page');
 const allMainSections = document.querySelectorAll('body > *:not(.header):not(.merchandising-page):not(footer):not(script)');
-const lojaLink = document.querySelector('.merchandising-link'); // Usando a classe correta
+const lojaLink = document.querySelector('.merchandising-link'); 
 
 // Função para esconder conteúdo principal
 function hideMainContent() {

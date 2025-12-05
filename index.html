@@ -136,10 +136,46 @@
         align-items: center;
         text-align: center;
         padding: 120px 20px 60px;
-        /* NOVO: Fundo radial para dar profundidade e dinamismo */
+        /* Fundo radial para dar profundidade e dinamismo */
         background: radial-gradient(circle at 50% 10%, var(--apple-light-gray-2) 0%, var(--apple-light-gray) 70%);
         position: relative;
+        z-index: 1; /* Garante que o hero tenha um contexto z-index */
     }
+    
+    /* Garante que o conteúdo do Hero fique acima do Background Slider */
+    .hero h1, .hero p, .hero .btn {
+        position: relative;
+        z-index: 10; 
+        /* Ajuda na leitura do texto em cima das imagens claras */
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
+    }
+    
+    /* NOVO: Estilos do Background Slider */
+    .hero-background-slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 5; /* Abaixo do conteúdo principal (z-index: 10) */
+    }
+
+    .slider-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0; /* Inicia escondida */
+        transition: opacity 2s ease-in-out; /* Transição suave de 2 segundos */
+    }
+
+    .slider-image.active {
+        opacity: 0.08; /* Opacidade baixa, quase transparente */
+    }
+    /* FIM NOVO: Estilos do Background Slider */
     
     .hero h1 {
         font-size: clamp(2.5rem, 5vw, 4rem);
@@ -422,7 +458,7 @@
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
     }
     
-    /* NOVO: Estilos para o Scroll Reveal */
+    /* Estilos para o Scroll Reveal */
     .animated-item {
         opacity: 0;
         transform: translateY(20px);
@@ -432,7 +468,6 @@
         opacity: 1;
         transform: translateY(0);
     }
-    /* FIM NOVO SCROLL REVEAL */
 
     .service-item:hover {
         transform: translateY(-5px);
@@ -609,19 +644,6 @@
         margin-top: 40px;
     }
 
-    /* ---------------------------------- */
-    /* NOVO: CSS para Animação de Scroll */
-    /* ---------------------------------- */
-
-    .animated-item {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    .animated-item.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
     
     /* Apple-Style Store Design */
     .merchandising-page {
@@ -993,6 +1015,12 @@
 
     <main id="main-content" class="main-content">
         <section class="hero">
+            
+            <div class="hero-background-slider">
+                <img src="bg-image-1.webp" alt="Background slide 1" class="slider-image active" loading="lazy">
+                <img src="bg-image-2.webp" alt="Background slide 2" class="slider-image" loading="lazy">
+                <img src="bg-image-3.webp" alt="Background slide 3" class="slider-image" loading="lazy">
+            </div>
             <h1>Criando o extraordinário</h1>
             <p>Design gráfico, fotografia aérea e edição de vídeo para elevar a sua marca</p>
             <a href="#portfolio" class="btn">Veja o meu Trabalho</a>
@@ -1393,7 +1421,7 @@
             });
         });
         
-        // --- NOVO: SCRIPT PARA ANIMAÇÃO DE SCROLL (Intersection Observer) ---
+        // --- SCRIPT PARA ANIMAÇÃO DE SCROLL (Intersection Observer) ---
         const animatedItems = document.querySelectorAll('.animated-item');
         
         const observerOptions = {
@@ -1417,6 +1445,33 @@
             scrollObserver.observe(item);
         });
         
+        // --- NOVO: SCRIPT PARA SLIDER DE BACKGROUND DO HERO ---
+        const bgSlider = document.querySelector('.hero-background-slider');
+        if (bgSlider) {
+            const bgImages = bgSlider.querySelectorAll('.slider-image');
+            let currentBgIndex = 0;
+            const BG_SLIDE_INTERVAL = 6000; // Troca a cada 6 segundos
+
+            function cycleBackgrounds() {
+                // Remove a classe 'active' da imagem atual
+                bgImages.forEach(img => img.classList.remove('active'));
+
+                // Calcula o próximo índice
+                currentBgIndex = (currentBgIndex + 1) % bgImages.length;
+
+                // Adiciona a classe 'active' à próxima imagem
+                bgImages[currentBgIndex].classList.add('active');
+            }
+
+            // Inicia o ciclo após o carregamento
+            if (bgImages.length > 1) {
+                // Garante que a primeira imagem já está visível
+                bgImages[currentBgIndex].classList.add('active');
+                setInterval(cycleBackgrounds, BG_SLIDE_INTERVAL);
+            }
+        }
+        // --- FIM NOVO: SLIDER DE BACKGROUND DO HERO ---
+
         // --- SCRIPT PARA O CARROSSEL DO PORTFÓLIO ---
         const portfolioTrack = document.querySelector('.portfolio-track');
         const portfolioItems = document.querySelectorAll('.portfolio-item');

@@ -50,6 +50,26 @@
         padding: 0 22px;
         width: 100%;
     }
+
+    /* --- NOVOS ESTILOS DE UX (APPLE-LIKE) --- */
+    
+    /* 1. Animação de entrada (Intersection Observer) */
+    .animated-element {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .animated-element.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* 2. Feedback Tátil em Imagens (LQIP Blur) */
+    .lazy-img-blur {
+        filter: blur(5px); /* Efeito de placeholder borrado */
+        transition: filter 0.5s ease-out;
+    }
     
     /* Header */
     .header {
@@ -127,7 +147,7 @@
         z-index: 1000;
     }
     
-    /* Hero Section */
+    /* Hero Section (AGORA COM BACKGROUND MAIS IMPACTANTE) */
     .hero {
         min-height: 100vh;
         display: flex;
@@ -136,7 +156,11 @@
         align-items: center;
         text-align: center;
         padding: 120px 20px 60px;
-        background: linear-gradient(to bottom, rgba(245,245,247,0.9) 0%, rgba(245,245,247,0.7) 100%);
+        /* NOVO BACKGROUND PARA ANCORAR A PÁGINA */
+        background-image: linear-gradient(to bottom, rgba(245,245,247,0.85) 0%, rgba(245,245,247,0.7) 100%), url('https://via.placeholder.com/1920x1080?text=Icarus+Studio+Hero+Image'); 
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
         position: relative;
     }
     
@@ -161,7 +185,7 @@
         padding: 0 20px;
     }
     
-    /* Buttons */
+    /* Buttons (AGORA COM FEEDBACK TÁTIL) */
     .btn {
         display: inline-block;
         background-color: var(--apple-blue);
@@ -171,7 +195,7 @@
         border-radius: 980px;
         font-size: 17px;
         font-weight: 400;
-        transition: all 0.3s ease;
+        transition: all 0.3s ease, transform 0.1s ease; /* Transição para transform 0.1s */
         cursor: pointer;
         border: none;
         white-space: nowrap;
@@ -180,6 +204,12 @@
     .btn:hover {
         background-color: var(--apple-blue-hover);
         transform: scale(1.02);
+    }
+
+    /* NOVO: Feedback tátil ao clicar */
+    .btn:active {
+        transform: scale(0.98) !important; 
+        transition: transform 0.1s ease;
     }
 
     .btn-whatsapp {
@@ -207,27 +237,22 @@
     /* NOVO WRAPPER E TRACK PARA O SLIDER */
     .portfolio-wrapper {
         position: relative;
-        overflow: hidden; /* ESCONDE os itens que estão fora da vista */
+        overflow: hidden; 
         margin: 0 auto;
         max-width: 100%;
-        padding: 0 22px; /* Mantém o padding do container */
+        padding: 0 22px; 
     }
 
     .portfolio-track {
         display: flex;
-        gap: 30px; /* Gap entre os itens */
-        transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transição Suave */
-        margin-bottom: 50px; /* Margem original do portfolio-images */
-    }
-
-    /* Removendo o Grid original, mas mantendo a classe se necessário */
-    .portfolio-images {
-        display: none; 
+        gap: 30px; 
+        transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+        margin-bottom: 50px; 
     }
     
     .portfolio-item {
-        flex-shrink: 0; /* Garante que o item não encolha */
-        width: 300px; /* Largura base do item */
+        flex-shrink: 0; 
+        width: 300px; 
         
         border-radius: 18px;
         overflow: hidden;
@@ -242,6 +267,7 @@
         transform: translateY(-5px);
     }
     
+    /* Imagem agora tem a classe para o efeito LQIP (lazy-img-blur) */
     .portfolio-item img {
         width: 100%;
         height: 100%;
@@ -300,7 +326,6 @@
         opacity: 0.3;
         cursor: not-allowed;
     }
-    /* FIM DOS NOVOS ESTILOS */
     
     /* Aerial Photos Section */
     .photo-section {
@@ -329,6 +354,7 @@
         transform: scale(1.03);
     }
     
+    /* Imagem agora tem a classe para o efeito LQIP (lazy-img-blur) */
     .photo-item img {
         width: 100%;
         height: 100%;
@@ -372,6 +398,7 @@
         background-color: var(--apple-light-gray-2);
     }
     
+    /* Imagem agora tem a classe para o efeito LQIP (lazy-img-blur) */
     .about-image img {
         width: 100%;
         height: 100%;
@@ -394,6 +421,7 @@
         margin-top: 50px;
     }
 
+    /* Item de Serviço agora usa animação de entrada */
     .service-item {
         flex: 1;
         min-width: 300px;
@@ -520,6 +548,7 @@
         margin-bottom: 50px;
     }
 
+    /* Card de Contato agora usa animação de entrada */
     .contact-item-card {
         background: var(--apple-white);
         border-radius: 18px;
@@ -548,7 +577,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-weight: 400; /* Símbolo mais limpo */
+        font-weight: 400; 
     }
 
     .contact-item-card h3 {
@@ -587,7 +616,7 @@
         flex-direction: column;
         min-height: 100vh;
         padding: 120px 20px 60px;
-        background-color: var(--apple-light-gray); /* Fundo sutil para a loja */
+        background-color: var(--apple-light-gray); 
         scroll-margin-top: 70px;
     }
     
@@ -624,7 +653,7 @@
     }
     
     .category-btn {
-        background: var(--apple-white); /* Fundo branco nos botões */
+        background: var(--apple-white); 
         border: 1px solid var(--apple-light-gray-2);
         font-size: 17px;
         color: var(--apple-text-gray);
@@ -636,7 +665,7 @@
     
     .category-btn.active, .category-btn:hover {
         color: var(--apple-blue);
-        background-color: rgba(0, 113, 227, 0.08); /* Fundo mais sutil ao ativo/hover */
+        background-color: rgba(0, 113, 227, 0.08); 
         border-color: rgba(0, 113, 227, 0.5);
     }
     
@@ -686,6 +715,7 @@
         overflow: hidden;
     }
     
+    /* Imagem de produto também usa LQIP */
     .product-image img {
         max-width: 80%;
         max-height: 80%;
@@ -750,31 +780,12 @@
     }
     
     /* Media Queries */
-    @media (max-width: 1024px) {
-        .hero h1 {
-            font-size: 52px;
-        }
-        
-        .hero p {
-            font-size: 24px;
-        }
-        
-        .section-title {
-            font-size: 40px;
-        }
-        
-        /* Ajuste do portfolio item para telas grandes/médias */
-        .portfolio-item {
-            width: 300px;
-        }
-    }
-    
     @media (max-width: 768px) {
         .menu-toggle {
             display: block;
         }
         
-        /* FIX: Estilos do Menu Mobile (Agora usando visibility e pointer-events) */
+        /* FIX: Estilos do Menu Mobile (Corrigido para usar visibility/pointer-events) */
         .nav-links {
             position: fixed;
             top: 0;
@@ -787,18 +798,18 @@
             align-items: center;
             padding: 80px 20px 20px;
             transform: translateY(-100%);
-            transition: transform 0.3s ease-out; /* Apenas o transform é animado */
+            transition: transform 0.3s ease-out; 
             z-index: 999;
             gap: 20px;
-            display: flex; /* Mantém o display flex para o layout em coluna */
-            visibility: hidden; /* Oculta o elemento sem quebrar a animação */
-            pointer-events: none; /* Desabilita o clique quando escondido */
+            display: flex; 
+            visibility: hidden; 
+            pointer-events: none; 
         }
 
         .nav-links.active {
             transform: translateY(0);
-            visibility: visible; /* Torna visível ao abrir */
-            pointer-events: auto; /* Habilita o clique */
+            visibility: visible; 
+            pointer-events: auto; 
         }
         
         /* Oculta o botão Contact do header principal */
@@ -933,11 +944,11 @@
             <div class="header-content">
                 <div class="logo-container">
                     <div class="logo">
-                        <a href="#"><img src="logo.webp" alt="Icarus Logo"></a>
+                        <a href="#"><img src="logo.webp" alt="Logotipo Icarus Studios"></a>
                     </div>
                     <div class="logo-text">ICARUS STUDIOS</div>
                 </div>
-                <button class="menu-toggle" aria-label="Menu">☰</button>
+                <button class="menu-toggle" aria-label="Menu" aria-expanded="false">☰</button>
                 <div class="nav-links">
                     <a href="#portfolio" class="nav-link">+Recentes</a>
                     <a href="#about" class="nav-link">About</a>
@@ -964,28 +975,28 @@
                     <div class="portfolio-track">
                         <div class="portfolio-item">
                             <div class="item-title">Art HB</div>
-                            <img src="image1.webp" alt="Design Work 1" loading="lazy">
+                            <img class="lazy-img-blur" src="image1.webp" alt="Design Art HB" loading="lazy">
                         </div>
                         <div class="portfolio-item">
                             <div class="item-title">Art Mayra</div>
-                            <img src="image2.webp" alt="Design Work 2" loading="lazy">
+                            <img class="lazy-img-blur" src="image2.webp" alt="Design Art Mayra" loading="lazy">
                         </div>
                         <div class="portfolio-item">
                             <div class="item-title">CAN3</div>
-                            <img src="image3.webp" alt="Design Work 3" loading="lazy">
+                            <img class="lazy-img-blur" src="image3.webp" alt="Design CAN3" loading="lazy">
                         </div>
                         
                         <div class="portfolio-item">
                             <div class="item-title">NOVO 4 (Exemplo)</div>
-                            <img src="image4.webp" alt="Design Work 4" loading="lazy">
+                            <img class="lazy-img-blur" src="image4.webp" alt="Design Work 4 Placeholder" loading="lazy">
                         </div>
                         <div class="portfolio-item">
                             <div class="item-title">NOVO 5 (Exemplo)</div>
-                            <img src="image5.webp" alt="Design Work 5" loading="lazy">
+                            <img class="lazy-img-blur" src="image5.webp" alt="Design Work 5 Placeholder" loading="lazy">
                         </div>
                         <div class="portfolio-item">
                             <div class="item-title">NOVO 6 (Exemplo)</div>
-                            <img src="image6.webp" alt="Design Work 6" loading="lazy">
+                            <img class="lazy-img-blur" src="image6.webp" alt="Design Work 6 Placeholder" loading="lazy">
                         </div>
                         
                     </div>
@@ -993,6 +1004,7 @@
                     <button class="nav-btn prev-btn">❮</button>
                     <button class="nav-btn next-btn">❯</button>
                 </div>
+                
                 <div style="text-align: center">
                     <a href="https://www.behance.net/herminimiranda" class="btn" target="_blank" rel="noopener">Veja mais no meu Behance</a>
                 </div>
@@ -1005,15 +1017,15 @@
                 <div class="photo-grid">
                     <div class="photo-item">
                         <div class="item-title">Palmarejo</div>
-                        <img src="aerial1.webp" alt="Aerial Photo 1" loading="lazy">
+                        <img class="lazy-img-blur" src="aerial1.webp" alt="Foto aérea de Palmarejo, Cabo Verde" loading="lazy">
                     </div>
                     <div class="photo-item">
                         <div class="item-title">Cidade Velha</div>
-                        <img src="aerial2.webp" alt="Aerial Photo 2" loading="lazy">
+                        <img class="lazy-img-blur" src="aerial2.webp" alt="Foto aérea da Cidade Velha, Cabo Verde" loading="lazy">
                     </div>
                     <div class="photo-item">
                         <div class="item-title">Tarrafal</div>
-                        <img src="aerial3.webp" alt="Aerial Photo 3" loading="lazy">
+                        <img class="lazy-img-blur" src="aerial3.webp" alt="Foto aérea de Tarrafal, Cabo Verde" loading="lazy">
                     </div>
                 </div>
                 <div style="text-align: center">
@@ -1026,7 +1038,7 @@
             <div class="container">
                 <div class="about-content">
                     <div class="about-image">
-                        <img src="profile.jpg" alt="Profile Photo" loading="lazy">
+                        <img class="lazy-img-blur" src="profile.jpg" alt="Foto de perfil do Herminilton Miranda" loading="lazy">
                     </div>
                     <div class="about-text">
                         <h2>Sobre mim</h2>
@@ -1040,17 +1052,17 @@
             <div class="container">
                 <h2 class="section-title">Nossos Serviços</h2>
                 <div class="services-container">
-                    <div class="service-item">
+                    <div class="service-item animated-element">
                         <div class="service-icon"></div>
                         <h3 class="service-title">Design Gráfico & Branding</h3>
                         <p class="service-description">Desenvolvemos identidades visuais, logotipos, materiais publicitários e layouts personalizados para fortalecer a imagem da sua marca.</p>
                     </div>
-                    <div class="service-item">
+                    <div class="service-item animated-element">
                         <div class="service-icon"></div>
                         <h3 class="service-title">Produção & Edição de Vídeos</h3>
                         <p class="service-description">Criamos vídeos impactantes, desde filmagens institucionais, vídeos imobiliários e conteúdos para redes sociais, com edição profissional.</p>
                     </div>
-                    <div class="service-item">
+                    <div class="service-item animated-element">
                         <div class="service-icon"></div>
                         <h3 class="service-title">Fotografia & Imagens Aéreas</h3>
                         <p class="service-description">Capturamos imagens profissionais e vídeos aéreos com drone para destacar propriedades, eventos e negócios de uma perspectiva única.</p>
@@ -1093,7 +1105,7 @@
                     <h2>Fale Conosco</h2>
                     
                     <div class="contact-methods">
-                        <div class="contact-item-card">
+                        <div class="contact-item-card animated-element">
                             <div class="contact-icon">📱</div>
                             <h3>WhatsApp</h3>
                             <p>O jeito mais rápido de começar seu projeto.</p>
@@ -1102,7 +1114,7 @@
                             </a>
                         </div>
                         
-                        <div class="contact-item-card">
+                        <div class="contact-item-card animated-element">
                             <div class="contact-icon">📞</div>
                             <h3>Telefone</h3>
                             <p>Ligue-nos para dúvidas ou assistência imediata.</p>
@@ -1111,7 +1123,7 @@
                             </a>
                         </div>
 
-                        <div class="contact-item-card">
+                        <div class="contact-item-card animated-element">
                             <div class="contact-icon">✉️</div>
                             <h3>Email</h3>
                             <p>Para propostas detalhadas ou documentação.</p>
@@ -1150,7 +1162,7 @@
                 <div class="product-card" data-category="t-shirts">
                     <div class="product-badge">COMING SOON</div>
                     <div class="product-image">
-                        <img src="https://via.placeholder.com/300x300?text=T-Shirt+1" alt="T-Shirt Design 1">
+                        <img class="lazy-img-blur" src="https://via.placeholder.com/300x300?text=T-Shirt+1" alt="T-Shirt Design 1" loading="lazy">
                     </div>
                     <div class="product-details">
                         <h3 class="product-title">Icarus Signature Tee</h3>
@@ -1162,7 +1174,7 @@
                 <div class="product-card" data-category="t-shirts">
                     <div class="product-badge">COMING SOON</div>
                     <div class="product-image">
-                        <img src="https://via.placeholder.com/300x300?text=T-Shirt+2" alt="T-Shirt Design 2">
+                        <img class="lazy-img-blur" src="https://via.placeholder.com/300x300?text=T-Shirt+2" alt="T-Shirt Design 2" loading="lazy">
                     </div>
                     <div class="product-details">
                         <h3 class="product-title">Minimalist Logo Tee</h3>
@@ -1174,7 +1186,7 @@
                 <div class="product-card" data-category="hoodies">
                     <div class="product-badge">COMING SOON</div>
                     <div class="product-image">
-                        <img src="https://via.placeholder.com/300x300?text=Hoodie+1" alt="Hoodie Design 1">
+                        <img class="lazy-img-blur" src="https://via.placeholder.com/300x300?text=Hoodie+1" alt="Hoodie Design 1" loading="lazy">
                     </div>
                     <div class="product-details">
                         <h3 class="product-title">Premium Black Hoodie</h3>
@@ -1186,7 +1198,7 @@
                 <div class="product-card" data-category="bags">
                     <div class="product-badge">COMING SOON</div>
                     <div class="product-image">
-                        <img src="https://via.placeholder.com/300x300?text=Bag+1" alt="Bag Design 1">
+                        <img class="lazy-img-blur" src="https://via.placeholder.com/300x300?text=Bag+1" alt="Bag Design 1" loading="lazy">
                     </div>
                     <div class="product-details">
                         <h3 class="product-title">Canvas Tote Bag</h3>
@@ -1271,7 +1283,7 @@
             });
         }
 
-        // Close menu and handle navigation (FIXED)
+        // Close menu and handle navigation
         document.querySelectorAll('.nav-link, .btn').forEach(link => {
             link.addEventListener('click', function(e) {
                 // Fecha menu mobile
@@ -1339,19 +1351,50 @@
             });
         });
 
-        // Preload images
-        window.addEventListener('load', function() {
-            const images = document.querySelectorAll('img[loading="lazy"]');
-            images.forEach(img => {
-                const src = img.getAttribute('src');
-                if (src) {
-                    const imgObj = new Image();
-                    imgObj.src = src;
-                }
-            });
-        });
+        /* --- NOVO: Lógica de Carregamento Visual (LQIP - Low-Quality Image Placeholder) --- */
+        const lazyImages = document.querySelectorAll('img[loading="lazy"]');
         
-        // --- SCRIPT PARA O CARROSSEL DO PORTFÓLIO (AUTOPLAY MAIS RÁPIDO) ---
+        lazyImages.forEach(img => {
+            // Aplica a classe de blur inicial
+            img.classList.add('lazy-img-blur');
+
+            // Verifica se a imagem já foi carregada (cache)
+            if (img.complete) {
+                img.classList.remove('lazy-img-blur');
+            } else {
+                // Remove a classe de blur ao carregar
+                img.addEventListener('load', function() {
+                    this.classList.remove('lazy-img-blur');
+                });
+            }
+        });
+
+        /* --- NOVO: Intersection Observer para Animação de Entrada --- */
+        const animateOnScroll = () => {
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Adiciona a classe 'visible' para iniciar a animação
+                        entry.target.classList.add('visible');
+                        // Para de observar o elemento
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                // O elemento aparece quando 10% dele estiver visível
+                threshold: 0.1,
+                // Margem inferior de -50px para iniciar a animação um pouco antes
+                rootMargin: '0px 0px -50px 0px' 
+            });
+
+            document.querySelectorAll('.animated-element').forEach(element => {
+                observer.observe(element);
+            });
+        };
+
+        animateOnScroll();
+        
+        // --- SCRIPT PARA O CARROSSEL DO PORTFÓLIO ---
         const portfolioTrack = document.querySelector('.portfolio-track');
         const portfolioItems = document.querySelectorAll('.portfolio-item');
         const prevBtn = document.querySelector('.nav-btn.prev-btn');
@@ -1360,7 +1403,7 @@
         
         let currentSlide = 0;
         const gap = 30; // O gap definido no CSS
-        const AUTOPLAY_INTERVAL = 3000; // REDUZIDO para 3 segundos para ser mais dinâmico
+        const AUTOPLAY_INTERVAL = 3000; 
         let autoSlideInterval;
         
         // 1. FUNÇÕES DE AUTOPLAY
@@ -1440,7 +1483,7 @@
             const currentScroll = currentSlide * (itemWidth + gap);
             
             // Próximo botão é desabilitado se a área visível for maior que a distância restante para o final.
-            const isNearEnd = currentScroll + wrapperWidth >= trackTotalWidth - (itemWidth / 2); // Ajuste leve
+            const isNearEnd = currentScroll + wrapperWidth >= trackTotalWidth - (itemWidth / 2); 
             
             nextBtn.disabled = isNearEnd;
         }

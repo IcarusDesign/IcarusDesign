@@ -129,13 +129,14 @@
     
     /* Hero Section (Ajustado com Fundo Sutil) */
     .hero {
-        min-height: 100vh;
+        /* MUDANÇA: Reduzido de 100vh para 60vh e ajustado o padding para diminuir o espaço vertical */
+        min-height: 60vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
-        padding: 120px 20px 60px;
+        padding: 100px 20px;
         /* Fundo radial para dar profundidade e dinamismo */
         background: radial-gradient(circle at 50% 10%, var(--apple-light-gray-2) 0%, var(--apple-light-gray) 70%);
         position: relative;
@@ -146,8 +147,7 @@
     .hero h1, .hero p, .hero .btn {
         position: relative;
         z-index: 10; 
-        /* Ajuda na leitura do texto em cima das imagens claras */
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
+        /* REMOVIDO: text-shadow, pois a cor do H1 agora é sólida e escura */
     }
     
     /* NOVO: Estilos do Background Slider */
@@ -181,10 +181,13 @@
         font-size: clamp(2.5rem, 5vw, 4rem);
         line-height: 1.2;
         margin-bottom: 1rem;
-        background: linear-gradient(120deg, #0071e3 0%, #2997ff 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        /* MUDANÇA: Cor sólida para garantir 100% de opacidade e forte legibilidade */
+        color: var(--apple-dark-gray); 
+        background: none;
+        -webkit-background-clip: initial;
+        -webkit-text-fill-color: initial;
+        background-clip: initial;
+        /* FIM MUDANÇA */
         font-weight: 700;
         max-width: 900px;
         padding: 0 20px;
@@ -884,7 +887,9 @@
         }
 
         .hero {
-            padding-top: 80px;
+            /* Ajuste para mobile */
+            padding-top: 80px; 
+            min-height: auto; 
         }
 
         /* Portfolio em Mobile: Apenas um item por vez no slide */

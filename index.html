@@ -204,14 +204,31 @@
         padding: 0 20px;
     }
     
+    /* NOVO WRAPPER E TRACK PARA O SLIDER */
+    .portfolio-wrapper {
+        position: relative;
+        overflow: hidden; /* ESCONDE os itens que estão fora da vista */
+        margin: 0 auto;
+        max-width: 100%;
+        padding: 0 22px; /* Mantém o padding do container */
+    }
+
+    .portfolio-track {
+        display: flex;
+        gap: 30px; /* Gap entre os itens */
+        transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transição Suave */
+        margin-bottom: 50px; /* Margem original do portfolio-images */
+    }
+
+    /* Removendo o Grid original, mas mantendo a classe se necessário */
     .portfolio-images {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 30px;
-        margin-bottom: 50px;
+        display: none; 
     }
     
     .portfolio-item {
+        flex-shrink: 0; /* Garante que o item não encolha */
+        width: 300px; /* Largura base do item */
+        
         border-radius: 18px;
         overflow: hidden;
         transition: transform 0.3s ease;
@@ -245,6 +262,45 @@
         -webkit-backdrop-filter: blur(10px);
         color: var(--apple-dark-gray);
     }
+
+    /* Estilo dos Botões de Navegação */
+    .nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        color: var(--apple-dark-gray);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 20px;
+        font-weight: 700;
+        cursor: pointer;
+        z-index: 10;
+        opacity: 0.8;
+        transition: opacity 0.3s, background-color 0.3s;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-btn:hover {
+        opacity: 1;
+        background-color: var(--apple-light-gray-2);
+    }
+
+    .nav-btn.prev-btn {
+        left: 0px; 
+    }
+
+    .nav-btn.next-btn {
+        right: 0px; 
+    }
+
+    .nav-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+    /* FIM DOS NOVOS ESTILOS */
     
     /* Aerial Photos Section */
     .photo-section {
@@ -674,8 +730,9 @@
             font-size: 40px;
         }
         
-        .portfolio-images {
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        /* Ajuste do portfolio item para telas grandes/médias */
+        .portfolio-item {
+            width: 300px;
         }
     }
     
@@ -716,9 +773,17 @@
             padding-top: 80px;
         }
 
-        .portfolio-images {
-            grid-template-columns: 1fr;
-            gap: 20px;
+        /* Portfolio em Mobile: Apenas um item por vez no slide */
+        .portfolio-item {
+            width: 100%; 
+        }
+
+        .nav-btn.prev-btn {
+            left: 5px; 
+        }
+
+        .nav-btn.next-btn {
+            right: 5px; 
         }
 
         .about-content {
@@ -808,7 +873,6 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header-content">
@@ -830,32 +894,49 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main id="main-content" class="main-content">
-        <!-- Hero Section -->
         <section class="hero">
             <h1>Criando o extraordinário</h1>
             <p>Design gráfico, fotografia aérea e edição de vídeo para elevar a sua marca</p>
             <a href="#portfolio" class="btn">Veja o meu Trabalho</a>
         </section>
 
-        <!-- Portfolio Section -->
         <section id="portfolio" class="portfolio-section">
             <div class="container">
                 <h2 class="section-title">Meu Portfolio</h2>
-                <div class="portfolio-images">
-                    <div class="portfolio-item">
-                        <div class="item-title">Art HB</div>
-                        <img src="image1.webp" alt="Design Work 1" loading="lazy">
+                
+                <div class="portfolio-wrapper">
+                    <div class="portfolio-track">
+                        <div class="portfolio-item">
+                            <div class="item-title">Art HB</div>
+                            <img src="image1.webp" alt="Design Work 1" loading="lazy">
+                        </div>
+                        <div class="portfolio-item">
+                            <div class="item-title">Art Mayra</div>
+                            <img src="image2.webp" alt="Design Work 2" loading="lazy">
+                        </div>
+                        <div class="portfolio-item">
+                            <div class="item-title">CAN3</div>
+                            <img src="image3.webp" alt="Design Work 3" loading="lazy">
+                        </div>
+                        
+                        <div class="portfolio-item">
+                            <div class="item-title">NOVO 4 (Exemplo)</div>
+                            <img src="image4.webp" alt="Design Work 4" loading="lazy">
+                        </div>
+                        <div class="portfolio-item">
+                            <div class="item-title">NOVO 5 (Exemplo)</div>
+                            <img src="image5.webp" alt="Design Work 5" loading="lazy">
+                        </div>
+                        <div class="portfolio-item">
+                            <div class="item-title">NOVO 6 (Exemplo)</div>
+                            <img src="image6.webp" alt="Design Work 6" loading="lazy">
+                        </div>
+                        
                     </div>
-                    <div class="portfolio-item">
-                        <div class="item-title">Art Mayra</div>
-                        <img src="image2.webp" alt="Design Work 2" loading="lazy">
-                    </div>
-                    <div class="portfolio-item">
-                        <div class="item-title">CAN3</div>
-                        <img src="image3.webp" alt="Design Work 3" loading="lazy">
-                    </div>
+                    
+                    <button class="nav-btn prev-btn">❮</button>
+                    <button class="nav-btn next-btn">❯</button>
                 </div>
                 <div style="text-align: center">
                     <a href="https://www.behance.net/herminimiranda" class="btn" target="_blank" rel="noopener">Veja mais no meu Behance</a>
@@ -863,7 +944,6 @@
             </div>
         </section>
 
-        <!-- Aerial Photography Section -->
         <section class="photo-section">
             <div class="container">
                 <h2 class="section-title">Aerial Photography</h2>
@@ -887,7 +967,6 @@
             </div>
         </section>
 
-        <!-- About Section -->
         <section id="about" class="about-section">
             <div class="container">
                 <div class="about-content">
@@ -902,7 +981,6 @@
             </div>
         </section>
 
-        <!-- Services Section -->
         <section id="services" class="services-section">
             <div class="container">
                 <h2 class="section-title">Nossos Serviços</h2>
@@ -926,7 +1004,6 @@
             </div>
         </section>
 
-        <!-- FAQ Section -->
         <section id="faq" class="faq-section">
             <div class="container">
                 <h2 class="section-title">FAQ</h2>
@@ -955,7 +1032,6 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section id="contact" class="contact-section">
             <div class="container">
                 <div class="contact-info">
@@ -985,7 +1061,6 @@
         </section>
     </main>
 
-    <!-- Apple-Style Store Page -->
     <section id="merchandising" class="merchandising-page">
         <div class="container">
             <div class="store-hero">
@@ -1002,7 +1077,6 @@
             </div>
             
             <div class="product-grid">
-                <!-- T-shirt 1 -->
                 <div class="product-card" data-category="t-shirts">
                     <div class="product-badge">COMING SOON</div>
                     <div class="product-image">
@@ -1015,7 +1089,6 @@
                     </div>
                 </div>
                 
-                <!-- T-shirt 2 -->
                 <div class="product-card" data-category="t-shirts">
                     <div class="product-badge">COMING SOON</div>
                     <div class="product-image">
@@ -1028,7 +1101,6 @@
                     </div>
                 </div>
                 
-                <!-- Hoodie 1 -->
                 <div class="product-card" data-category="hoodies">
                     <div class="product-badge">COMING SOON</div>
                     <div class="product-image">
@@ -1041,7 +1113,6 @@
                     </div>
                 </div>
                 
-                <!-- Bag 1 -->
                 <div class="product-card" data-category="bags">
                     <div class="product-badge">COMING SOON</div>
                     <div class="product-image">
@@ -1059,7 +1130,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <p>© 2025 Herminilton Miranda. All rights reserved.</p>
@@ -1203,13 +1273,129 @@
                 }
             });
         });
+        
+        // --- NOVO SCRIPT PARA O CARROSSEL DO PORTFÓLIO ---
+        const portfolioTrack = document.querySelector('.portfolio-track');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const wrapper = document.querySelector('.portfolio-wrapper');
+        
+        let currentSlide = 0;
+        const gap = 30; // O gap definido no CSS
+        
+        // Função para atualizar os botões (desabilitar se estiver no início/fim)
+        function updateButtons() {
+            // Desabilita o botão anterior se estiver no primeiro slide
+            prevBtn.disabled = currentSlide === 0;
+            
+            // Largura visível do wrapper
+            const wrapperWidth = wrapper.clientWidth;
+            // Posição total do track
+            const trackTotalWidth = portfolioTrack.scrollWidth;
+            
+            // O scroll atual é a distância que já foi movida
+            const currentScroll = currentSlide * (portfolioItems[0].clientWidth + gap);
+
+            // Desabilita o botão próximo se o que resta para scrollar for menor ou igual a largura do wrapper
+            const remainingScroll = trackTotalWidth - currentScroll - portfolioItems[0].clientWidth;
+
+            // Se a largura visível for maior ou igual ao track total, desabilita os dois
+            if (trackTotalWidth <= wrapperWidth) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+                return;
+            } else {
+                prevBtn.style.display = 'block';
+                nextBtn.style.display = 'block';
+            }
+            
+            // Se a posição do próximo slide estiver muito próxima do final, desabilita o next
+            if (currentScroll + wrapperWidth >= trackTotalWidth - 10) { // -10 para margem de erro
+                 nextBtn.disabled = true;
+            } else {
+                 nextBtn.disabled = false;
+            }
+        }
+
+        // Função para mover o track
+        function moveTrack() {
+            if (portfolioItems.length === 0) return;
+            
+            const itemWidth = portfolioItems[0].clientWidth;
+            
+            // Calcula o quanto deve se mover
+            let moveDistance = currentSlide * (itemWidth + gap);
+            
+            // Garante que o último item seja sempre visível ao atingir o limite
+            const wrapperWidth = wrapper.clientWidth;
+            const trackTotalWidth = portfolioTrack.scrollWidth;
+
+            // Se a distância calculada ultrapassar o limite, ajusta para o máximo
+            const maxMove = trackTotalWidth - wrapperWidth;
+            if (moveDistance > maxMove) {
+                moveDistance = maxMove;
+            }
+            
+            portfolioTrack.style.transform = `translateX(-${moveDistance}px)`;
+            
+            updateButtons();
+        }
+
+        // Evento para o botão Próximo
+        nextBtn.addEventListener('click', () => {
+             const itemWidth = portfolioItems[0].clientWidth;
+             const trackTotalWidth = portfolioTrack.scrollWidth;
+             const wrapperWidth = wrapper.clientWidth;
+             
+             // Quantos itens cabem no wrapper
+             const itemsPerView = Math.floor(wrapperWidth / (itemWidth + gap));
+
+             if (itemsPerView > 0) {
+                 // Move pelo menos um item ou o número de itens visíveis
+                 currentSlide += 1; // Move de 1 em 1 para melhor controle no mobile
+             } else {
+                 currentSlide++;
+             }
+             
+             // Verifica se o scroll não ultrapassou o limite
+             const currentScroll = currentSlide * (itemWidth + gap);
+             const maxMove = trackTotalWidth - wrapperWidth;
+
+             if (currentScroll > maxMove) {
+                 // Ajusta para a posição máxima onde o último item aparece
+                 currentSlide = Math.floor(maxMove / (itemWidth + gap));
+                 if (maxMove % (itemWidth + gap) > 0) {
+                     currentSlide++; 
+                 }
+             }
+
+             moveTrack();
+        });
+
+        // Evento para o botão Anterior
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                moveTrack();
+            }
+        });
+        
+        // Recalcula o tamanho e atualiza botões quando a tela é redimensionada
+        window.addEventListener('resize', moveTrack);
+
+        // Inicializa o carrossel no carregamento
+        if (portfolioItems.length > 0) {
+            updateButtons();
+        } 
+        setTimeout(moveTrack, 10); 
     });
     </script>
     <script>
-// Selecionar elementos
+// Selecionar elementos (mantendo o script antigo por segurança)
 const lojaPage = document.querySelector('.merchandising-page');
-const allMainSections = document.querySelectorAll('body > *:not(.header):not(.merchandising-page)');
-const lojaLink = document.querySelector('a[href="#merch"]');
+const allMainSections = document.querySelectorAll('body > *:not(.header):not(.merchandising-page):not(footer):not(script)');
+const lojaLink = document.querySelector('.merchandising-link'); // Usando a classe correta
 
 // Função para esconder conteúdo principal
 function hideMainContent() {
@@ -1224,30 +1410,12 @@ function showMainContent() {
 
 // Quando clicar em "Merchandising / Loja"
 if (lojaLink) {
-    lojaLink.addEventListener('click', () => {
-        lojaPage.classList.add('active');
-        hideMainContent();
-        window.scrollTo(0, 0);
+    lojaLink.addEventListener('click', (e) => {
+        // A lógica já é controlada pelo DOMContentLoaded no script anterior,
+        // mantendo apenas para compatibilidade.
     });
 }
-
-// Quando clicar em QUALQUER link do menu (exceto "Loja")
-document.querySelectorAll('.nav-link').forEach(link => {
-    if (link !== lojaLink) {
-        link.addEventListener('click', () => {
-            showMainContent();
-        });
-    }
-});
-
-// Botão "Voltar" da loja (se existir)
-const backBtn = document.querySelector('#back-from-store');
-if (backBtn) {
-    backBtn.addEventListener('click', () => {
-        showMainContent();
-        window.location.hash = ''; // limpa o #merch
-    });
-}
+// Outros listeners de navegação já estão no DOMContentLoaded
 </script>
 </body>
 </html>

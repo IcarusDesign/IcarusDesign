@@ -774,7 +774,7 @@
             display: block;
         }
         
-        /* FIX: Esconde todos os links no header em mobile */
+        /* FIX: Estilos do Menu Mobile (Agora usando visibility e pointer-events) */
         .nav-links {
             position: fixed;
             top: 0;
@@ -787,23 +787,20 @@
             align-items: center;
             padding: 80px 20px 20px;
             transform: translateY(-100%);
-            transition: transform 0.3s ease-out;
+            transition: transform 0.3s ease-out; /* Apenas o transform é animado */
             z-index: 999;
             gap: 20px;
-            /* Garante que os links não apareçam na versão não expandida */
-            display: none; 
+            display: flex; /* Mantém o display flex para o layout em coluna */
+            visibility: hidden; /* Oculta o elemento sem quebrar a animação */
+            pointer-events: none; /* Desabilita o clique quando escondido */
         }
 
         .nav-links.active {
             transform: translateY(0);
-            display: flex; /* Mostra o menu quando ativo */
+            visibility: visible; /* Torna visível ao abrir */
+            pointer-events: auto; /* Habilita o clique */
         }
         
-        /* Oculta os links do menu principal para que apenas o toggle apareça */
-        .header-content .nav-links {
-            display: none;
-        }
-
         /* Oculta o botão Contact do header principal */
         .header-content .btn {
             display: none !important; 

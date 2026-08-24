@@ -104,6 +104,12 @@
     .hero h1 { margin-bottom: 24px; font-size: clamp(3rem, 7.5vw, 6.7rem); font-weight: 750; }
     .hero p { max-width: 760px; margin: 0 auto 36px; color: var(--gray-500); font-size: clamp(1.2rem, 2.2vw, 1.65rem); line-height: 1.45; }
     .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+    .hero-showcase { position: relative; width: min(900px, 92vw); height: 390px; margin: 65px auto -150px; perspective: 1200px; }
+    .hero-art { position: absolute; overflow: hidden; width: 30%; aspect-ratio: 3 / 4; border-radius: 22px; background: var(--gray-200); box-shadow: 0 35px 70px rgba(0,0,0,.2); }
+    .hero-art img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-art:nth-child(1) { left: 8%; top: 28px; transform: rotate(-7deg) translateZ(-50px); }
+    .hero-art:nth-child(2) { left: 35%; top: 0; z-index: 2; transform: translateZ(40px); }
+    .hero-art:nth-child(3) { right: 8%; top: 28px; transform: rotate(7deg) translateZ(-50px); }
 
     .projects { background: var(--off-white); }
     .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -239,6 +245,101 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
     }
+
+    /* Icarus × Apple-inspired visual system */
+    body { background: #f5f5f7; }
+    .header { height: 48px; background: rgba(250,250,252,.82); }
+    .header-inner { max-width: 1040px; }
+    .brand { font-size: 14px; }
+    .brand img { height: 30px; }
+    .nav { gap: 25px; }
+    .nav a { font-size: 12px; }
+    .nav .button { min-height: 30px; padding: 6px 14px; font-size: 12px; }
+    .section { padding: 120px 0; }
+    .hero { min-height: 900px; padding: 135px 0 0; overflow: hidden; background: #fff; }
+    .hero-badge { margin-bottom: 14px; background: linear-gradient(90deg,#0071e3,#7d4cff,#e14487); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: 17px; letter-spacing: -.01em; }
+    .hero h1 { max-width: 980px; margin-inline: auto; margin-bottom: 18px; font-size: clamp(3.8rem, 7.4vw, 6.8rem); letter-spacing: -.06em; }
+    .hero p { max-width: 650px; margin-bottom: 26px; color: #6e6e73; font-size: clamp(1.2rem,2vw,1.55rem); font-weight: 500; }
+    .button { min-height: 42px; padding: 9px 20px; font-size: 15px; }
+    .button-secondary { border: 1px solid var(--blue); background: transparent; color: var(--blue) !important; }
+    .button-secondary:hover { background: var(--blue); color: white !important; }
+    .projects { padding-top: 150px; background: #f5f5f7; }
+    .projects .section-eyebrow, .projects .section-title { text-align: center; margin-inline: auto; }
+    .section-eyebrow { font-size: 13px; }
+    .section-title { font-size: clamp(2.8rem,5.5vw,4.8rem); letter-spacing: -.055em; }
+    .project-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .project-card { position: relative; min-height: 680px; border-radius: 0; box-shadow: none; }
+    .project-card:first-child { grid-column: 1 / -1; min-height: 760px; }
+    .project-card:hover { transform: none; box-shadow: none; }
+    .project-image { position: absolute; inset: 0; aspect-ratio: auto; }
+    .project-image::after { position: absolute; inset: 0; background: linear-gradient(to bottom,rgba(0,0,0,.5),transparent 45%,rgba(0,0,0,.08)); content: ""; }
+    .project-image img { transform: scale(1.01); }
+    .project-card:hover img { transform: scale(1.045); }
+    .project-category { z-index: 2; top: auto; bottom: 26px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,.86); }
+    .project-info { position: relative; z-index: 2; max-width: 650px; margin: 0 auto; padding: 50px 30px; color: white; text-align: center; }
+    .project-info h3 { margin-bottom: 8px; font-size: clamp(2.4rem,5vw,4.6rem); }
+    .project-info p { max-width: 500px; margin: 0 auto; color: rgba(255,255,255,.84); font-size: 19px; }
+    .project-meta { display: none; }
+    .project-card:not(:first-child) .project-info h3 { font-size: clamp(2.1rem,4vw,3.2rem); }
+    .section-action { margin-top: 35px; }
+    .aerial-grid { grid-template-rows: repeat(2,330px); gap: 14px; }
+    .aerial-card { border-radius: 0; }
+    .aerial-label { bottom: 24px; left: 24px; font-weight: 700; }
+    .services { margin: 14px 0; padding: 145px 0; background: #000; }
+    .services .section-title { max-width: 920px; }
+    .service-card { min-height: 390px; padding: 42px; border: 0; border-radius: 0; background: #1d1d1f; }
+    .service-icon { margin-top: 25px; background: linear-gradient(145deg,#2997ff,#7d4cff); }
+    .service-card h3 { margin-top: 55px; font-size: 30px; }
+    .about { margin: 14px 0; padding: 0; background: #fff; }
+    .about-grid { width: 100%; max-width: none; grid-template-columns: 1fr 1fr; gap: 0; }
+    .about-photo { width: 100%; height: 720px; aspect-ratio: auto; border-radius: 0; box-shadow: none; }
+    .about-grid > div:last-child { max-width: 620px; padding: 70px; }
+    .about h2 { font-size: clamp(3rem,5vw,5rem); }
+    .store { background: #f5f5f7; }
+    .store-head { align-items: center; }
+    .store-head .section-title { max-width: 800px; }
+    .product-grid { gap: 14px; }
+    .product-card { border-radius: 0; box-shadow: none; }
+    .product-card:hover { transform: none; box-shadow: none; }
+    .product-visual { aspect-ratio: .9; background: #fff; }
+    .product-info { padding: 24px 5px 32px; background: #f5f5f7; }
+    .product-info h3 { font-size: 20px; }
+    .store-cta { border-radius: 0; }
+    #faq { background: white; }
+    .faq-item { border-radius: 0; border-top: 1px solid #d2d2d7; background: white; }
+    .faq-item:last-child { border-bottom: 1px solid #d2d2d7; }
+    .contact { padding: 14px 0; background: #f5f5f7; }
+    .contact .container { width: calc(100% - 28px); max-width: none; }
+    .contact-card { min-height: 650px; display: flex; flex-direction: column; justify-content: center; border-radius: 0; background: radial-gradient(circle at 50% 120%,#263863 0,#101010 50%,#000 80%); box-shadow: none; }
+    .contact-card h2 { font-size: clamp(3.5rem,7vw,7rem); letter-spacing: -.065em; }
+    footer { background: #f5f5f7; }
+
+    .reveal { opacity: 0; transform: translateY(35px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 760px) {
+      .header { height: 48px; }
+      .brand img { height: 30px; }
+      .nav a { font-size: 22px; }
+      .hero { min-height: 760px; padding-top: 110px; }
+      .hero h1 { font-size: clamp(3rem,13.5vw,5rem); }
+      .hero-showcase { height: 300px; margin-top: 50px; margin-bottom: -95px; }
+      .hero-art { width: 39%; border-radius: 14px; }
+      .hero-art:nth-child(1) { left: -3%; }
+      .hero-art:nth-child(2) { left: 30.5%; }
+      .hero-art:nth-child(3) { right: -3%; }
+      .projects { padding-top: 110px; }
+      .project-grid { grid-template-columns: 1fr; }
+      .project-card:first-child { grid-column: auto; }
+      .project-card, .project-card:first-child { min-height: 620px; }
+      .aerial-grid { grid-template-rows: repeat(3,300px); }
+      .services { padding: 100px 0; }
+      .service-card { min-height: 340px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo { height: 540px; }
+      .about-grid > div:last-child { padding: 70px 22px; }
+      .contact-card { min-height: 580px; padding-inline: 22px; }
+    }
   </style>
 </head>
 <body>
@@ -271,6 +372,11 @@
         <div class="hero-actions">
           <a class="button" href="#projetos">Ver projetos</a>
           <a class="button button-secondary" href="https://wa.me/2389893666?text=Ol%C3%A1%20Icarus%20Design%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." target="_blank" rel="noopener noreferrer">Solicitar orçamento</a>
+        </div>
+        <div class="hero-showcase" aria-label="Seleção de trabalhos da Icarus Design">
+          <div class="hero-art"><img src="image1.webp" alt="" width="800" height="1067"></div>
+          <div class="hero-art"><img src="image2.webp" alt="" width="800" height="1067"></div>
+          <div class="hero-art"><img src="image3.webp" alt="" width="800" height="1067"></div>
         </div>
       </div>
     </section>
@@ -431,6 +537,18 @@
           });
         });
       });
+
+      const revealTargets = document.querySelectorAll(".section-title, .project-card, .service-card, .aerial-card, .product-card, .about-grid, .contact-card");
+      revealTargets.forEach(item => item.classList.add("reveal"));
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealTargets.forEach(item => observer.observe(item));
 
       document.getElementById("year").textContent = new Date().getFullYear();
     });
